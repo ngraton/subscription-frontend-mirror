@@ -22,7 +22,6 @@ class Subscription extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
     //Post request to API creating a new subscription
   }
   render () {
