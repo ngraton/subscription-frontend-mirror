@@ -12,7 +12,8 @@ class LoginPage extends Component {
     await this.setState({username:e.target.value})
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
    //Call API with post request with username as data 
   }
   render () {
@@ -25,7 +26,7 @@ class LoginPage extends Component {
             <Form.Control type="text" placeholder="username" onChange={this.onChange}/>
           </Form.Group>
         </Form>
-        <button onSubmit={this.handleSubmit}>Submit</button>
+        <button onClick={this.handleSubmit}>Submit</button>
         </div>
       </Container>
     )
