@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import MonthView from '../components/MonthView/MonthView'
 class HomePage extends Component {
   generateMonthLists() {
@@ -15,6 +16,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
+        <Link to='/addsubscription'>Add New Subscription</Link>
         {this.generateMonthLists()}
       </div>
     )

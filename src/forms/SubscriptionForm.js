@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Form, Button} from 'react-bootstrap';
-
+import { Redirect } from 'react-router-dom'
 
 class Subscription extends Component {
   state = {
@@ -8,7 +8,8 @@ class Subscription extends Component {
     due_date: '',
     interval:'',
     payment: 0,
-    user: null
+    user: null,
+    userDone: false
   }
 
   onChange = async (e) => {
@@ -20,35 +21,55 @@ class Subscription extends Component {
     })
   }
 
-  onSubmit = (e) => {
-    e.preventDefault()
-    //Post request to API creating a new subscription
+  onClickAddAnother = (e) => {
+    if (this.state.name && this.state.due_date && this.state.interval && this.state.payment) {
+      e.preventDefault()
+      //Post request to API creating a new subscription
+      document.getElementById("subscription_form").reset()
+    }
   }
+
+  onClickDone = (e) => {
+    if (this.state.name && this.state.due_date && this.state.interval && this.state.payment) {
+      e.preventDefault()
+      //Post request to API creating a new subscription
+      this.setState({userDone: true})
+    }
+  }
+
   render () {
+    console.log(this.state)
     return (
       <div align='center'>
-         <Form onChange={this.onChange}>
+        {this.state.userDone && <Redirect to="/" />}
+         <Form id="subscription_form" onChange={this.onChange}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control type="text" placeholder="name"/>
+            <Form.Control required type="text" placeholder="name"/>
             <br/>
             <Form.Text>Name of subscription</Form.Text>
           </Form.Group>
           <Form.Group controlId="due_date">
             <Form.Label>Due Date</Form.Label>
-            <Form.Control type="date" />
+            <Form.Control required type="date" />
           </Form.Group>
           <Form.Group controlId="payment">
             <Form.Label>Cost</Form.Label>
-            <Form.Control type="number" />
+            <Form.Control required type="number" />
           </Form.Group>
           <Form.Group controlId="interval">
             <Form.Label>Payment Interval</Form.Label>
-            <Form.Control type="number" />
+            <Form.Control required as="select">
+              <option></option>
+              <option>monthly</option>
+              <option>quarterly</option>
+              <option>annual</option>
+            </Form.Control>
             <br/>
             <Form.Text>How often payment is required in days</Form.Text>
           </Form.Group>
-          <input onClick={this.onSubmit} type="submit"/>
+          <Button onClick={this.onClickAddAnother} type="submit">Add Another</Button>
+          <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
         </Form>
       </div>
     )
