@@ -9,12 +9,6 @@ import SubscriptionForm from './forms/SubscriptionForm';
 function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('username'))
 
-  function PlaceHolder() {
-    return (
-      <div/>
-    )
-  }
-
   return (
     <Router>
       {!username && <Redirect to="/login" />}
@@ -23,7 +17,7 @@ function App() {
       </Navbar>
       <Switch>
         <Route exact path="/" component={HomePage}/>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login" component={LoginPage} />
         <Route exact path="/addsubscription" component={SubscriptionForm}/>
       </Switch>
     </Router>
