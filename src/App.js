@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 import HomePage from './pages/HomePage'
 import Login from './pages/LoginPage'
 import { Navbar } from 'react-bootstrap'
+import SubscriptionForm from './forms/SubscriptionForm';
 // import './App.css';
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage}/>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/addsubscription" component={PlaceHolder}/>
+        <Route exact path="/addsubscription" component={SubscriptionForm}/>
       </Switch>
     </Router>
   );
