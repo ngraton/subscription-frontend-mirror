@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Container } from 'react-bootstrap';
 
-
-
 class LoginPage extends Component {
   state = {
     username: ''
@@ -14,7 +12,8 @@ class LoginPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-   //Call API with post request with username as data 
+    //Call API with post request with username as data 
+    localStorage.setItem('username', this.state.username)
   }
   render () {
     return (
