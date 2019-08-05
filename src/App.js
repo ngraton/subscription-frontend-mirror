@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 import HomePage from './pages/HomePage'
 import Login from './pages/LoginPage'
+import { Navbar } from 'react-bootstrap'
 // import './App.css';
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
 
   return (
     <Router>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand>Name of App</Navbar.Brand>
+      </Navbar>
       <Switch>
         <Route exact path="/" component={HomePage}/>
         <Route exact path="/login" component={Login} />
