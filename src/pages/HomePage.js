@@ -37,6 +37,7 @@ class HomePage extends Component {
     })
   }
   handleLogout(e) {
+    localStorage.removeItem('username')
     this.setState({loggedin: false})
   }
 
