@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      {!username && <Redirect to="/login" />}
+      {/* {!username && <Redirect to="/login" />} */}
       <Navbar bg="light" expand="lg">
         <Navbar.Brand>Name of App</Navbar.Brand>
         <Nav>{username}</Nav>
@@ -24,6 +24,7 @@ function App() {
         <Route exact path="/login" render={
           props => <LoginPage {...props} setUsername={setUsername} />
         }/>
+        <Route exact path='/parse' component={DateCalculator} />
         <Route exact path="/addsubscription" render={
           props => <SubscriptionForm {...props} setUsername={setUsername} username={username} />
         }/>
