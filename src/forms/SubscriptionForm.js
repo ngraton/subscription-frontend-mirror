@@ -16,6 +16,7 @@ class Subscription extends Component {
 
   componentDidMount() {
     UsersAPI.getUserByUsername(this.props.username)
+    // .then(res => console.log(res))
       .then(jsonResponse => this.setState({
         user: jsonResponse[0].id
       }))
@@ -40,8 +41,7 @@ class Subscription extends Component {
         interval: this.state.interval,
         user: this.state.user
       }
-      SubscriptionsAPI(subscriptionObj)
-      console.log(subscriptionObj)
+      SubscriptionsAPI.addSubscription(subscriptionObj)
       document.getElementById("subscription_form").reset()
     }
   }
@@ -56,7 +56,7 @@ class Subscription extends Component {
         interval: this.state.interval,
         user: this.state.user
       }
-      SubscriptionsAPI(subscriptionObj)
+      SubscriptionsAPI.addSubscription(subscriptionObj)
       this.setState({userDone: true})
     }
   }
