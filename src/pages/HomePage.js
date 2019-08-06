@@ -11,6 +11,7 @@ class HomePage extends Component {
       return <MonthView key={index} month={month} />
     })
   }
+ 
 
   render() {
     return (
