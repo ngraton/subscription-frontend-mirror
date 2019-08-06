@@ -41,6 +41,7 @@ class Subscription extends Component {
         user: this.state.user
       }
       SubscriptionsAPI(subscriptionObj)
+      console.log(subscriptionObj)
       document.getElementById("subscription_form").reset()
     }
   }
