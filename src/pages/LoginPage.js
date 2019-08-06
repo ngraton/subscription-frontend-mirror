@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Form, Container } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
+import UsersAPI from '../api/UsersAPI';
 
 class LoginPage extends Component {
   state = {
-    username: ''
+    username: '',
+    redirectHome: false,
+    redirectNewSub: false
   }
   
   onChange = async (e) => {
@@ -12,20 +16,39 @@ class LoginPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    //Call API with post request with username as data 
-    localStorage.setItem('username', this.state.username)
+    let userArr = []
+    UsersAPI.getUserByUsername(this.state.username)
+      .then(jsonResponse => {userArr = jsonResponse})
+      .then(_res => {
+        if (userArr.length > 0) {
+          localStorage.setItem('username', this.state.username)
+          this.props.setUsername(this.state.username)
+          this.setState({redirectHome: true})
+        } else {
+          UsersAPI.addUserByUsername(this.state.username)
+          .then(_jsonResponse => {
+            this.props.setUsername(this.state.username)
+            localStorage.setItem('username', this.state.username)
+          })
+          .then(_res => this.setState({redirectNewSub: true}))
+        }
+      })
   }
+
   render () {
     return (
       <Container>
+        {this.state.redirectHome && <Redirect to='/' />}
+        {this.state.redirectNewSub && <Redirect to='/addSubscription' />}
         <div align='center'>
-        <Form>
+        <h2>Login / Sign Up</h2>
+        <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
-            <Form.Label>userName</Form.Label>
+            <Form.Label>username</Form.Label>
             <Form.Control type="text" placeholder="username" onChange={this.onChange}/>
           </Form.Group>
+          <button type="submit">Submit</button>
         </Form>
-        <button onClick={this.handleSubmit}>Submit</button>
         </div>
       </Container>
     )

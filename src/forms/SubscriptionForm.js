@@ -15,6 +15,7 @@ class Subscription extends Component {
 
   componentDidMount() {
     UsersAPI.getUserByUsername(this.props.username)
+    // .then(res => console.log(res))
       .then(jsonResponse => this.setState({
         user: jsonResponse[0].id
       }))

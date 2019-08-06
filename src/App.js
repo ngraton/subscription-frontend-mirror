@@ -11,13 +11,15 @@ function App() {
 
   return (
     <Router>
-      {/* {!username && <Redirect to="/login" />} */}
+      {!username && <Redirect to="/login" />}
       <Navbar bg="light" expand="lg">
         <Navbar.Brand>Name of App</Navbar.Brand>
       </Navbar>
       <Switch>
         <Route exact path="/" component={HomePage}/>
-        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/login" render={
+          props => <LoginPage {...props} setUsername={setUsername} />
+        }/>
         <Route exact path="/addsubscription" render={
           props => <SubscriptionForm {...props} username={username} />
         }/>
