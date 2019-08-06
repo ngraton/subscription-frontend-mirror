@@ -24,7 +24,7 @@ function App() {
           props => <LoginPage {...props} setUsername={setUsername} />
         }/>
         <Route exact path="/addsubscription" render={
-          props => <SubscriptionForm {...props} username={username} />
+          props => <SubscriptionForm {...props} setUsername={setUsername} username={username} />
         }/>
       </Switch>
     </Router>
