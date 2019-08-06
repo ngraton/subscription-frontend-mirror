@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
+import SubscriptionsAPI from '../api/SubscriptionsAPI';
 import UsersAPI from '../api/UsersAPI'
 
 class Subscription extends Component {
@@ -40,7 +41,7 @@ class Subscription extends Component {
         interval: this.state.interval,
         user: this.state.user
       }
-      //Post request to API creating a new subscription pass in subscriptionObj
+      SubscriptionsAPI(subscriptionObj)
       document.getElementById("subscription_form").reset()
     }
   }
@@ -55,7 +56,7 @@ class Subscription extends Component {
         interval: this.state.interval,
         user: this.state.user
       }
-      //Post request to API creating a new subscription pass in subscriptionObj
+      SubscriptionsAPI(subscriptionObj)
       this.setState({userDone: true})
     }
   }
