@@ -11,7 +11,8 @@ class Subscription extends Component {
     interval:'',
     payment: 0,
     user: null,
-    userDone: false
+    userDone: false,
+    loggedin: true
   }
 
   componentDidMount() {
@@ -64,12 +65,18 @@ class Subscription extends Component {
     }
   }
 
+  handleLogout(e) {
+    localStorage.removeItem('username')
+    this.props.setUsername('')
+    this.setState({loggedin: false})
+  }
+
   render () {
-    console.log(this.state)
     return (
       <div align='center'>
         {this.state.userDone && <Redirect to="/" />}
-         <Form id="subscription_form" onChange={this.onChange}>
+        {this.state.loggedin === false && <Redirect to='/login'/>}
+         <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control required type="text" placeholder="name"/>
@@ -98,6 +105,7 @@ class Subscription extends Component {
           <Button onClick={this.onClickAddAnother} type="submit">Add Another</Button>
           <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
         </Form>
+        <Button onClick={(e)=>this.handleLogout(e)} variant="outline-secondary">Logout</Button>
       </div>
     )
   }
