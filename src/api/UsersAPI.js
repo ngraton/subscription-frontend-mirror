@@ -1,4 +1,3 @@
-import { async } from "q";
 
 const url = 'https://cors-anywhere.herokuapp.com/https://subscription-backend.herokuapp.com/api/users'
 
@@ -21,6 +20,12 @@ const addUserByUsername = async (inputUsername) => {
 }
 
 export default {
+<<<<<<< HEAD
+  addUserByUsername: addUserByUsername,
+  getUserByUsername: getUserByUsername,
+}
+=======
   getUserByUsername: getUserByUsername,
   addUserByUsername: addUserByUsername
 }
+>>>>>>> ecc24a66318aefdc7e12254e3a4a84902a455e31
