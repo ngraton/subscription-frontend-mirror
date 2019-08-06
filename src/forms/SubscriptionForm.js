@@ -41,7 +41,7 @@ class Subscription extends Component {
         interval: this.state.interval,
         user: this.state.user
       }
-      SubscriptionsAPI(subscriptionObj)
+      SubscriptionsAPI.addSubscription(subscriptionObj)
       document.getElementById("subscription_form").reset()
     }
   }
