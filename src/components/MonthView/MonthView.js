@@ -22,7 +22,7 @@ class MonthView extends Component {
     return (
       <div>
         <h2>{this.props.month}</h2>
-        {this.showSubscriptions()}
+        {this.props.subscriptions.length > 0 && this.showSubscriptions()}
         <h3>Total $ </h3>
       </div>
     )

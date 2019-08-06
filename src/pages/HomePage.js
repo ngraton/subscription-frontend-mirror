@@ -5,7 +5,7 @@ class HomePage extends Component {
   state = {
     subscriptions: {}
   }
-  
+
 // This is what backend returns
 //   {
 //     "username": "admin",
@@ -32,7 +32,7 @@ class HomePage extends Component {
     let orderedMonths = months.slice(currentMonth)
     orderedMonths.push(...months.slice(0, currentMonth))
     return orderedMonths.map((month, index) => {
-      return <MonthView key={index} month={month} subscriptions={this.state.subscriptions[month]} />
+      return <MonthView key={index} month={month} subscriptions={this.state.subscriptions[month] ? this.state.subscriptions[month] : []} />
     })
   }
 
