@@ -20,11 +20,6 @@ const addUserByUsername = async (inputUsername) => {
 }
 
 export default {
-<<<<<<< HEAD
-  getUserByUsername: getUserByUsername,
-  addUserByUsername: addUserByUsername
-=======
   addUserByUsername: addUserByUsername,
   getUserByUsername: getUserByUsername,
->>>>>>> 337e739ea4345efb6af505d6cde53218caa4b287
 }
