@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Form, Button} from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
+import SubscriptionsAPI from '../api/SubscriptionsAPI';
 
 class Subscription extends Component {
   state = {
@@ -24,7 +25,14 @@ class Subscription extends Component {
   onClickAddAnother = (e) => {
     if (this.state.name && this.state.due_date && this.state.interval && this.state.payment) {
       e.preventDefault()
-      //Post request to API creating a new subscription
+      let subscriptionObject = {
+        "name": this.state.name,
+        "due_date": this.state.due_date,
+        "payment": this.state.payment,
+        "interval": this.state.interval,
+        "user": this.props.userID,
+      }
+      SubscriptionsAPI.addSubscription(subscriptionObject)
       document.getElementById("subscription_form").reset()
     }
   }
