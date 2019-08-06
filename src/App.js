@@ -18,7 +18,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={HomePage}/>
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/addsubscription" component={SubscriptionForm}/>
+        <Route exact path="/addsubscription" render={
+          props => <SubscriptionForm {...props} username={username} />
+        }/>
       </Switch>
     </Router>
   );

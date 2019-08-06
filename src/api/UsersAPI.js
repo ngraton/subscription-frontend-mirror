@@ -19,3 +19,8 @@ const addUserByUsername = async (inputUsername) => {
   const data = await response.json();
   return await data;
 }
+
+export default {
+  getUserByUsername: getUserByUsername,
+  addUserByUsername: addUserByUsername
+}
