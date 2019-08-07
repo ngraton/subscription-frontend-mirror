@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Form, Button} from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
 import UsersAPI from '../api/UsersAPI'
@@ -12,7 +12,9 @@ class Subscription extends Component {
     payment: 0,
     user: null,
     userDone: false,
-    loggedin: true
+    loggedin: true,
+    submitted: false,
+    submittedName: ''
   }
 
   componentDidMount() {
@@ -46,6 +48,7 @@ class Subscription extends Component {
         user: this.state.user
       }
       SubscriptionsAPI.addSubscription(subscriptionObj)
+      this.setState({submitted: true, submittedName: this.state.name})
       document.getElementById("subscription_form").reset()
     }
   }
@@ -76,6 +79,7 @@ class Subscription extends Component {
       <div align='center'>
         {this.state.userDone && <Redirect to="/" />}
         {this.state.loggedin === false && <Redirect to='/login'/>}
+        {this.state.submitted && <Alert variant="danger" onClose={() => this.setState({submitted: false})} dismissible>Your subscription to {this.state.submittedName} was added</Alert>}
          <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
