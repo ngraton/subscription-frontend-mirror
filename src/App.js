@@ -14,7 +14,7 @@ function App() {
     <Router>
       {!username && <Redirect to="/login" />}
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand>Name of App</Navbar.Brand>
+        <Navbar.Brand>SubReckoner</Navbar.Brand>
         <Nav>{username}</Nav>
       </Navbar>
       <Switch>
