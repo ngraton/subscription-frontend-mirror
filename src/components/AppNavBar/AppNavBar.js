@@ -1,14 +1,19 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 
-function AppNavBar() {
+function AppNavBar({ username, setUserName }) {
 
-  const [logedIn, setLogedIn ] = React.useState(!!localStorage.getItem('username'))
+  const [logedIn, setLogedIn ] = React.useState(false)
 
   const handleLogout = () => {
     localStorage.removeItem('username')
     setLogedIn(false)
+    setUserName('')
   }
+
+  React.useEffect(() => {
+    setLogedIn(!!localStorage.getItem('username'))
+  }, [localStorage.getItem('username')])
 
   const logInOrOut = () => {
     if(logedIn){
@@ -24,13 +29,16 @@ function AppNavBar() {
           {logInOrOut()}
         </Nav.Item>
         <Nav.Item>
-          {logedIn && <Nav.Link to='/addsubscription'>Add New Subscription</Nav.Link>}
+          {logedIn && <Nav.Link href='/addsubscription'>Add New Subscription</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
-          {logedIn && <Nav.Link to='/subscriptionlist'>Subscription List</Nav.Link>}
+          {logedIn && <Nav.Link href='/subscriptionlist'>Subscription List</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
-          {logedIn && <Nav.Link to='/'>Report by Month</Nav.Link>}
+          {logedIn && <Nav.Link href='/'>Report by Month</Nav.Link>}
+        </Nav.Item>
+        <Nav.Item>
+          { username }
         </Nav.Item>
       </Navbar>
     </div>

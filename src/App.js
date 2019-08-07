@@ -17,16 +17,16 @@ function App() {
       <AppNavBar setUsername={setUsername} username={username}/>
       <Switch>
         <Route exact path="/" render={
-          props => <HomePage {...props} />
+          props => <HomePage {...props} username={ username }/>
         }/>
         <Route exact path="/login" render={
-          props => <LoginPage {...props} setUsername={setUsername} />
+          props => <LoginPage {...props} setUsername={ setUsername } />
         }/>
         <Route exact path="/addsubscription" render={
-          props => <AddSubscriptionForm {...props} />
+          props => <AddSubscriptionForm {...props} username={ username }/>
         }/>
         <Route exact path="/subscriptionlist" render={props => <SubscriptionListPage {...props} username={ username } />} />
-        <Route exact path="/editsubscription/:subscriptionID" render={props => <EditSubscriptionForm {...props} username={username} />}/>
+        <Route exact path="/editsubscription/:subscriptionID" render={props => <EditSubscriptionForm {...props} username={ username } />}/>
       </Switch>
     </Router>
   );
