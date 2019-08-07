@@ -1,4 +1,4 @@
-const url = 'https://cors-anywhere.herokuapp.com/https://subscription-frontend.herokuapp.com/rest-auth'
+const url = 'https://cors-anywhere.herokuapp.com/https://subscription-backend.herokuapp.com/rest-auth'
 
 const login = async (username, password) => {
   const response = await fetch(`${url}/login/`, {

@@ -32,16 +32,8 @@ class SignupPage extends Component {
         localStorage.setItem('username', this.state.username)
         this.props.setUsername(this.state.username)
         this.setState({redirectNewSub: true})
-        // setToken(jsonResponse.token)
       })
       .catch(_error => console.log(_error))
-  }
-
-  logout(e) {
-    e.preventDefault()
-    AuthenticationsAPI.logout()
-      .then(res => res.json())
-      .then(jsonRes => console.log(jsonRes))
   }
 
   render () {
@@ -63,7 +55,6 @@ class SignupPage extends Component {
           <button type="submit">Submit</button>
         </Form>
         </div>
-        <button onClick={this.logout}>logout</button>
       </Container>
     )
   }

@@ -6,6 +6,7 @@ import AddSubscriptionForm from './forms/AddSubscriptionForm';
 import AppNavBar from './components/AppNavBar/AppNavBar';
 import EditSubscriptionForm from './forms/EditSubscriptionForm';
 import SubscriptionListPage from './pages/SubscriptionListPage';
+import SignupPage from './pages/SignupPage';
 // import './App.css';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
 
   return (
     <Router>
-      {!username && <Redirect to="/login" />}
+      {/* {!username && <Redirect to="/login" />} */}
       <AppNavBar setUsername={setUsername} username={username}/>
       <Switch>
         <Route exact path="/" render={
