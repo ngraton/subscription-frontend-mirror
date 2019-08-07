@@ -1,11 +1,13 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import AuthenticationsAPI from '../../api/AuthenticationsAPI';
 
 function AppNavBar({ username, setUserName }) {
 
   const [logedIn, setLogedIn ] = React.useState(false)
 
   const handleLogout = () => {
+    AuthenticationsAPI.logout()
     localStorage.removeItem('username')
     setLogedIn(false)
     setUserName('')

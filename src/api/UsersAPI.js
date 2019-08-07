@@ -1,5 +1,5 @@
-
 const url = 'https://cors-anywhere.herokuapp.com/https://subscription-backend.herokuapp.com/api/users'
+
 
 const getUserByUsername = async (inputUsername) => {
   const response = await fetch(`${url}?username=${inputUsername}`);
@@ -20,6 +20,6 @@ const addUserByUsername = async (inputUsername) => {
 }
 
 export default {
-  addUserByUsername: addUserByUsername,
   getUserByUsername: getUserByUsername,
+  addUserByUsername: addUserByUsername
 }
