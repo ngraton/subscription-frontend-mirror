@@ -15,17 +15,17 @@ function App() {
   return (
     <Router>
       {/* this line needs to change so people can sign up */}
-      {!username && <Redirect to="/login" />}
       <AppNavBar setUsername={setUsername} username={username}/>
       <Switch>
+      <Route exact path="/signup" render={
+        props => <SignupPage {...props} setUsername={setUsername} />
+      }/>
+      <Route exact path="/login" render={
+        props => <LoginPage {...props} setUsername={ setUsername } />
+      }/>
+      {!username && <Redirect to="/login" />}
         <Route exact path="/" render={
           props => <HomePage {...props} username={ username }/>
-        }/>
-        <Route exact path="/login" render={
-          props => <LoginPage {...props} setUsername={ setUsername } />
-        }/>
-        <Route exact path="/signup" render={
-          props => <SignupPage {...props} setUsername={setUsername} />
         }/>
         <Route exact path="/addsubscription" render={
           props => <AddSubscriptionForm {...props} username={ username }/>

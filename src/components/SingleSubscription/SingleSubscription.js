@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 class SingleSubscription extends Component {
   getDueDate() {
     let dueDate = this.props.subscription['due_date'].split('-')
+    if(this.props.subscription['dueInMonth']){
+      dueDate = this.props.subscription['dueInMonth'].split('-')
+    }
     return dueDate[dueDate.length - 1]
   }
 
