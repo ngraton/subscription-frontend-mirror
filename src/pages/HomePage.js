@@ -10,20 +10,6 @@ class HomePage extends Component {
     subscriptions: {}
   }
 
-// This is what backend returns
-//   {
-//     "username": "admin",
-//     "subscriptions": [
-//         {
-//             "id": 1,
-//             "name": "big bill",
-//             "due_date": "2019-08-14",
-//             "payment": 100000,
-//             "interval": "annual",
-//             "user": 1
-//         }
-//     ]
-// }
   componentDidMount() {
     if(localStorage.getItem('username')){
       UsersAPI.getUserByUsername(localStorage.getItem('username'))

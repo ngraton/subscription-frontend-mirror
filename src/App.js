@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-ro
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import { Nav, Navbar } from 'react-bootstrap'
-import SubscriptionForm from './forms/SubscriptionForm';
-import DateCalculator from './logic/DateCalculator';
+import SubscriptionForm from './forms/SubscriptionForm'
+import SignupPage from './pages/SignupPage'
 // import './App.css';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      {!username && <Redirect to="/login" />}
+      {/* {!username && <Redirect to="/login" />} */}
       <Navbar bg="light" expand="lg">
         <Navbar.Brand>SubReckoner</Navbar.Brand>
         <Nav>{username}</Nav>
@@ -23,6 +23,9 @@ function App() {
         }/>
         <Route exact path="/login" render={
           props => <LoginPage {...props} setUsername={setUsername} />
+        }/>
+        <Route exact path="/signup" render={
+          props => <SignupPage {...props} setUsername={setUsername} />
         }/>
         <Route exact path="/addsubscription" render={
           props => <SubscriptionForm {...props} setUsername={setUsername} username={username} />
