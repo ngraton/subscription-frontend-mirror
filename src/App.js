@@ -14,7 +14,8 @@ function App() {
 
   return (
     <Router>
-      {/* {!username && <Redirect to="/login" />} */}
+      {/* this line needs to change so people can sign up */}
+      {!username && <Redirect to="/login" />}
       <AppNavBar setUsername={setUsername} username={username}/>
       <Switch>
         <Route exact path="/" render={
