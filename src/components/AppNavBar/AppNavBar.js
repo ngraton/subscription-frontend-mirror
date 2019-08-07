@@ -23,7 +23,7 @@ function AppNavBar({ username, setUserName }) {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar className="bg-light justify-content-between" expand="lg">
         <Navbar.Brand>SubReckoner</Navbar.Brand>
         <Nav.Item>
           {logInOrOut()}
