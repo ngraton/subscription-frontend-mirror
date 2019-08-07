@@ -1,6 +1,3 @@
-
-
-
  const dateInterval = (date, interval) => {
     let seperate = date.split('-')
     let numbers = seperate.map((number) => {
