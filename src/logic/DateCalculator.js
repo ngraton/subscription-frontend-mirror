@@ -72,7 +72,6 @@
 
   const recurringDates = (date, interval) => {
     let dates = []
-    let use = 0
     if (dates.length === 0){
       dates.push(dateInterval(date, interval))
     }

@@ -68,11 +68,6 @@ class Subscription extends Component {
     }
   }
 
-  handleLogout(e) {
-    localStorage.removeItem('username')
-    this.props.setUsername('')
-    this.setState({loggedin: false})
-  }
 
   render () {
     return (
@@ -109,7 +104,6 @@ class Subscription extends Component {
           <Button onClick={this.onClickAddAnother} type="submit">Add Another</Button>
           <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
         </Form>
-        <Button onClick={(e)=>this.handleLogout(e)} variant="outline-secondary">Logout</Button>
       </div>
     )
   }

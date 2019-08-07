@@ -31,19 +31,11 @@ class HomePage extends Component {
       return <MonthView key={index} month={month} subscriptions={this.state.subscriptions[month] ? this.state.subscriptions[month] : []} />
     })
   }
-  handleLogout(e) {
-    localStorage.removeItem('username')
-    this.props.setUsername('')
-    this.setState({loggedin: false})
-  }
-
 
   render() {
     return (
       <div>
         {this.state.loggedin === false && <Redirect to='/login'/>}
-        <button onClick={(e)=>this.handleLogout(e)}>Logout</button>
-        <Link to='/addsubscription'>Add New Subscription</Link>
         {this.generateMonthLists()}
       </div>
     )
