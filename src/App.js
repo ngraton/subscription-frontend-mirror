@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
 import { Nav, Navbar } from 'react-bootstrap'
 import SubscriptionForm from './forms/SubscriptionForm';
-import DateCalculator from './components/Calculations/DateCalculator';
+import DateCalculator from './logic/DateCalculator';
 // import './App.css';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      {/* {!username && <Redirect to="/login" />} */}
+      {!username && <Redirect to="/login" />}
       <Navbar bg="light" expand="lg">
         <Navbar.Brand>Name of App</Navbar.Brand>
         <Nav>{username}</Nav>

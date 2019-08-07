@@ -3,7 +3,14 @@ import SingleSubscription from '../SingleSubscription/SingleSubscription'
 
 class MonthView extends Component {
 
-
+  getMonthlyTotal(){
+    let totalCost = 0
+    for (let i=0; i < this.props.subscriptions.length; i++){
+      let subscription = this.props.subscriptions[i]
+      totalCost += subscription.payment
+    }
+    return totalCost
+  }
 
   showSubscriptions() {
     return this.props.subscriptions.map((subscriptionObj, index) => {
@@ -26,7 +33,7 @@ class MonthView extends Component {
       <div>
         <h2>{this.props.month}</h2>
         {this.props.subscriptions.length > 0 && this.showSubscriptions()}
-        <h3>Total $ {}</h3>
+        <h3>Total $ {this.getMonthlyTotal()}</h3>
       </div>
     )
   }
