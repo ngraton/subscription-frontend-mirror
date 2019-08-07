@@ -9,11 +9,11 @@ class SingleSubscription extends Component {
 
   render() {
     return (
-      <div>
-        <h2>{this.props.subscription.name}</h2>
-        <h3>Due on {this.getDueDate()}</h3>
-        <h3>$ {this.props.subscription.payment}</h3>
-      </div>
+      <Row>
+        <Col><h3>{this.props.subscription.name}</h3></Col>
+        <Col><h3>Due on {this.getDueDate()}</h3></Col>
+        <Col><h3>$ {this.props.subscription.payment}</h3></Col>
+      </Row>
     )
   }
 }
