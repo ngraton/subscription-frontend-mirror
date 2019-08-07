@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom"
-import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
-import { Nav, Navbar } from 'react-bootstrap'
-import SubscriptionForm from './forms/SubscriptionForm';
-import DateCalculator from './logic/DateCalculator';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import AddSubscriptionForm from './forms/AddSubscriptionForm';
+import AppNavBar from './components/AppNavBar/AppNavBar';
+import EditSubscriptionForm from './forms/EditSubscriptionForm';
+import SubscriptionListPage from './pages/SubscriptionListPage';
 // import './App.css';
 
 function App() {
@@ -13,20 +14,19 @@ function App() {
   return (
     <Router>
       {!username && <Redirect to="/login" />}
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand>SubReckoner</Navbar.Brand>
-        <Nav>{username}</Nav>
-      </Navbar>
+      <AppNavBar setUsername={setUsername} username={username}/>
       <Switch>
         <Route exact path="/" render={
-          props => <HomePage {...props} setUsername={setUsername} />
+          props => <HomePage {...props} />
         }/>
         <Route exact path="/login" render={
           props => <LoginPage {...props} setUsername={setUsername} />
         }/>
         <Route exact path="/addsubscription" render={
-          props => <SubscriptionForm {...props} setUsername={setUsername} username={username} />
+          props => <AddSubscriptionForm {...props} />
         }/>
+        <Route exact path="/subscriptionlist" render={props => <SubscriptionListPage {...props} username={ username } />} />
+        <Route exact path="/editsubscription/:subscriptionID" render={props => <EditSubscriptionForm {...props} username={username} />}/>
       </Switch>
     </Router>
   );

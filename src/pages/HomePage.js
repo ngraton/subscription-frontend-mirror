@@ -10,20 +10,6 @@ class HomePage extends Component {
     subscriptions: {}
   }
 
-// This is what backend returns
-//   {
-//     "username": "admin",
-//     "subscriptions": [
-//         {
-//             "id": 1,
-//             "name": "big bill",
-//             "due_date": "2019-08-14",
-//             "payment": 100000,
-//             "interval": "annual",
-//             "user": 1
-//         }
-//     ]
-// }
   componentDidMount() {
     if(localStorage.getItem('username')){
       UsersAPI.getUserByUsername(localStorage.getItem('username'))
@@ -45,19 +31,11 @@ class HomePage extends Component {
       return <MonthView key={index} month={month} subscriptions={this.state.subscriptions[month] ? this.state.subscriptions[month] : []} />
     })
   }
-  handleLogout(e) {
-    localStorage.removeItem('username')
-    this.props.setUsername('')
-    this.setState({loggedin: false})
-  }
-
 
   render() {
     return (
       <div>
         {this.state.loggedin === false && <Redirect to='/login'/>}
-        <button onClick={(e)=>this.handleLogout(e)}>Logout</button>
-        <Link to='/addsubscription'>Add New Subscription</Link>
         {this.generateMonthLists()}
       </div>
     )
