@@ -70,23 +70,23 @@
     let dates = []
     let use = dates[dates.length-1]
     if (dates.length === 0){
-      dates.push(this.dateInterval(date, interval))
+      dates.push(dateInterval(date, interval))
     }
     if (interval === 'monthly'){
       for (let i = 0;i < 11; i++){
         let use = dates[dates.length-1]
-        dates.push(this.dateInterval(use, interval))
+        dates.push(dateInterval(use, interval))
       }
     }
     if (interval === 'quarterly'){
       for (let i = 0;i < 3; i++){
         let use = dates[dates.length-1]
-        dates.push(this.dateInterval(use, interval))
+        dates.push(dateInterval(use, interval))
       }
     }
     if (interval === 'annually'){
       for (let i = 0;i < 3; i++){
-        dates.push(this.dateInterval(use, interval))
+        dates.push(dateInterval(use, interval))
       }
     }
     return dates
