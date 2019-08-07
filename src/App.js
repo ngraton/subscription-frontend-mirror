@@ -24,7 +24,6 @@ function App() {
         <Route exact path="/login" render={
           props => <LoginPage {...props} setUsername={setUsername} />
         }/>
-        <Route exact path='/parse' component={DateCalculator} />
         <Route exact path="/addsubscription" render={
           props => <SubscriptionForm {...props} setUsername={setUsername} username={username} />
         }/>
