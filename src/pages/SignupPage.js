@@ -3,12 +3,11 @@ import { Form, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
-class LoginPage extends Component {
+class SignupPage extends Component {
   state = {
     username: '',
     password: '',
-    redirectHome: false,
-    loginFailed: false
+    redirectNewSub: false,
   }
   
   onChange = async (e) => {
@@ -20,7 +19,7 @@ class LoginPage extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    AuthenticationsAPI.login(this.state.username, this.state.password)
+    AuthenticationsAPI.registration(this.state.username, this.state.password)
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -32,19 +31,18 @@ class LoginPage extends Component {
         // localStorage.setItem('token', jsonResponse.token)
         localStorage.setItem('username', this.state.username)
         this.props.setUsername(this.state.username)
-        this.setState({redirectHome: true})
-        // setToken(jsonResponse.token)
+        this.setState({redirectNewSub: true})
       })
-      .catch(_error => this.setState({loginFailed: true}))
+      .catch(_error => console.log(_error))
   }
 
   render () {
     return (
       <Container>
-        {this.state.redirectHome && <Redirect to='/' />}
+        {this.state.redirectNewSub && <Redirect to='/addSubscription' />}
         <div align='center'>
         {this.state.loginFailed && <p>Unable to log in with provided credentials. Please try again.</p>}
-        <h2>Login</h2>
+        <h2>Sign Up</h2>
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
             <Form.Label>username</Form.Label>
@@ -61,5 +59,4 @@ class LoginPage extends Component {
     )
   }
 }
-
-export default LoginPage;
+export default SignupPage;
