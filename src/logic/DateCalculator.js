@@ -76,8 +76,8 @@
       for (let i = 0;i < 11; i++){
         let use = dates[dates.length-1].split('-')
         if ((thirty_days.includes(use[1]) === false) && use[1] !== '2'){
-          if(date.slice(8) === '31'){
-           use[2] = '31'
+          if(Number(date.slice(8)) > Number(use[2])){
+           use[2] = date.slice(8)
           }
         }
         use = use.join()
@@ -90,8 +90,8 @@
       for (let i = 0;i < 3; i++){
         let use = dates[dates.length-1].split('-')
         if ((thirty_days.includes(use[1]) === false) && use[1] !== '2'){
-          if(date.slice(8) === '31'){
-           use[2] = '31'
+          if(Number(date.slice(8)) > Number(use[2])){
+           use[2] = date.slice(8)
           }
         }
         use = use.join()
