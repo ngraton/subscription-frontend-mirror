@@ -12,6 +12,13 @@ const addSubscription = async (subscriptionObject) => {
   return await data;
 }
 
+const getSubscriptionById = async (subscriptionID) => {
+  const response = await fetch(`${url}/${subscriptionID}/`);
+  const data = await response.json();
+  return await data;
+}
+
 export default {
   addSubscription: addSubscription,
+  getSubscriptionById: getSubscriptionById,
 }
