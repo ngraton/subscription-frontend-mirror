@@ -2,8 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom"
 import HomePage from './pages/HomePage'
 import LoginPage from './pages/LoginPage'
-import { Navbar } from 'react-bootstrap'
+import { Nav, Navbar } from 'react-bootstrap'
 import SubscriptionForm from './forms/SubscriptionForm';
+import DateCalculator from './components/Calculations/DateCalculator';
 // import './App.css';
 
 function App() {
@@ -11,17 +12,21 @@ function App() {
 
   return (
     <Router>
-      {!username && <Redirect to="/login" />}
+      {/* {!username && <Redirect to="/login" />} */}
       <Navbar bg="light" expand="lg">
         <Navbar.Brand>Name of App</Navbar.Brand>
+        <Nav>{username}</Nav>
       </Navbar>
       <Switch>
-        <Route exact path="/" component={HomePage}/>
+        <Route exact path="/" render={
+          props => <HomePage {...props} setUsername={setUsername} />
+        }/>
         <Route exact path="/login" render={
           props => <LoginPage {...props} setUsername={setUsername} />
         }/>
+        <Route exact path='/parse' component={DateCalculator} />
         <Route exact path="/addsubscription" render={
-          props => <SubscriptionForm {...props} username={username} />
+          props => <SubscriptionForm {...props} setUsername={setUsername} username={username} />
         }/>
       </Switch>
     </Router>
