@@ -1,8 +1,12 @@
  const dateInterval = (date, interval) => {
+    // console.log(date)
     let seperate = date.split('-')
     let numbers = seperate.map((number) => {
       return Number(number)
     })
+    if (interval === 'annual'){
+      return date
+    }
     let thirty_days = [4, 9, 11]
     if (interval === 'monthly'){
       if (numbers[1] === 12){
@@ -40,7 +44,7 @@
         }
     }
   }
-    if (interval === 'anually'){
+    if (interval === 'annual'){
       numbers[0]+= 1
       if (numbers[1] === 2){
         if (numbers[2] > 28){
@@ -65,7 +69,7 @@
 
   const recurringDates = (date, interval) => {
     let dates = []
-    let use = dates[dates.length-1]
+    let use = 0
     if (dates.length === 0){
       dates.push(dateInterval(date, interval))
     }
@@ -81,10 +85,8 @@
         dates.push(dateInterval(use, interval))
       }
     }
-    if (interval === 'annually'){
-      for (let i = 0;i < 3; i++){
-        dates.push(dateInterval(use, interval))
-      }
+    if (interval === 'annual'){
+      return [date]
     }
     return dates
   }
