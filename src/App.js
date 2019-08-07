@@ -12,7 +12,7 @@ function App() {
 
   return (
     <Router>
-      {/* {!username && <Redirect to="/login" />} */}
+      {!username && <Redirect to="/login" />}
       <Navbar bg="light" expand="lg">
         <Navbar.Brand>Name of App</Navbar.Brand>
         <Nav>{username}</Nav>
