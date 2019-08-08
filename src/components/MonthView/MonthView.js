@@ -13,9 +13,9 @@ class MonthView extends Component {
     return totalCost
   }
 
-  showSubscriptions() {
+  showSubscriptions(monthCode) {
     return this.props.subscriptions.map((subscriptionObj, index) => {
-      return <SingleSubscription key={index} subscription={subscriptionObj}/>
+      return <SingleSubscription key={index} subscription={subscriptionObj} monthCode={monthCode}/>
     })
   }
 
@@ -34,7 +34,7 @@ class MonthView extends Component {
       <Container>
         <h2>{this.props.month}</h2>
         <Container>
-          {this.props.subscriptions.length > 0 && this.showSubscriptions()}
+          {this.props.subscriptions.length > 0 && this.showSubscriptions(this.props.monthCode)}
         </Container>
         <Row>
         <Col></Col>

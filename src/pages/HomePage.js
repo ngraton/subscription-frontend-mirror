@@ -26,9 +26,14 @@ class HomePage extends Component {
     let currentMonth = date.getMonth()
     let orderedMonths = months.slice(currentMonth)
     orderedMonths.push(...months.slice(0, currentMonth))
+    const calcMonthCode = (index) => {
+      let offset = currentMonth + index
+      return offset
+      } 
+    
     
     return orderedMonths.map((month, index) => {
-      return <MonthView key={index} month={month} subscriptions={this.state.subscriptions[month] ? this.state.subscriptions[month] : []} />
+      return <MonthView key={index} month={month} subscriptions={this.state.subscriptions[month] ? this.state.subscriptions[month] : []} monthCode={calcMonthCode(index)} />
     })
   }
 
