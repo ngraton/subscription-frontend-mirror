@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
 
+const styles = {
+  subscription_text: {
+    fontWeight: 'normal',
+    fontSize: '20px'
+  }
+}
+
 class SingleSubscription extends Component {
 
   getDueDate(monthCode) {
@@ -14,9 +21,9 @@ class SingleSubscription extends Component {
   render() {
     return (
       <Row>
-        <Col><p>{this.props.subscription.name}</p></Col>
-        <Col><p>Due on {this.getDueDate(this.props.monthCode)}</p></Col>
-        <Col><p>$ {this.props.subscription.payment}</p></Col>
+        <Col><p style={styles.subscription_text}>{this.props.subscription.name}</p></Col>
+        <Col><p style={styles.subscription_text}>Due on {this.getDueDate(this.props.monthCode)}</p></Col>
+        <Col><p style={styles.subscription_text}>$ {this.props.subscription.payment}</p></Col>
       </Row>
     )
   }

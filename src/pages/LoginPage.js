@@ -52,7 +52,7 @@ class LoginPage extends Component {
             <Form.Label>password</Form.Label>
             <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
-            <Button variant="primary" size="lg" block>
+            <Button variant="primary" size="lg" block type="submit">
               Login
             </Button>
         </Form>
