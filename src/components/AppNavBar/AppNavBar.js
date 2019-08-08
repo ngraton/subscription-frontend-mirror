@@ -28,9 +28,6 @@ function AppNavBar({ username, setUserName }) {
       <Navbar className="bg-light justify-content-between" expand="lg">
         <Navbar.Brand>SubReckoner</Navbar.Brand>
         <Nav.Item>
-          {logInOrOut()}
-        </Nav.Item>
-        <Nav.Item>
           {logedIn && <Nav.Link href='/addsubscription'>Add New Subscription</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
@@ -41,6 +38,9 @@ function AppNavBar({ username, setUserName }) {
         </Nav.Item>
         <Nav.Item>
           { username }
+        </Nav.Item>
+        <Nav.Item>
+          {logInOrOut()}
         </Nav.Item>
       </Navbar>
     </div>
