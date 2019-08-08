@@ -42,7 +42,6 @@ class LoginPage extends Component {
       <Container>
         {this.state.redirectHome && <Redirect to='/' />}
         <div align='center'>
-        <h2>Login</h2>
         {this.state.errorMessage && <Alert variant='warning'>{this.state.errorMessage}</Alert>}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
@@ -53,8 +52,8 @@ class LoginPage extends Component {
             <Form.Label>password</Form.Label>
             <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
-            <Button variant="primary" size="lg">
-              Submit to Sign In
+            <Button variant="primary" size="lg" block>
+              Login
             </Button>
         </Form>
         <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
