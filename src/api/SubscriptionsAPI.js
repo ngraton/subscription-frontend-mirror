@@ -12,6 +12,18 @@ const addSubscription = async (subscriptionObject) => {
   return await data;
 }
 
+const editSubscription = async (id, subscriptionObject) => {
+  const response = await fetch(`${url}/${id}/`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: "PATCH",
+    body: JSON.stringify(subscriptionObject)
+  });
+  const data = await response.json();
+  return await data;
+}
+
 const deleteSubscription = async (id) => {
   const response = await fetch(`${url}/${id}/`, {
     method: "DELETE"
@@ -27,6 +39,7 @@ const getSubscriptionById = async (subscriptionID) => {
 
 export default {
   addSubscription: addSubscription,
+  editSubscription: editSubscription,
   deleteSubscription: deleteSubscription,
   getSubscriptionById: getSubscriptionById,
 }
