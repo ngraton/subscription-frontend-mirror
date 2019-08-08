@@ -17,7 +17,7 @@ class SingleSubscription extends Component {
         <Col><h3>{this.props.subscription.name}</h3></Col>
         <Col><h3>Due on {this.getDueDate()}</h3></Col>
         <Col><h3>$ {this.props.subscription.payment}</h3></Col>
-        {this.props.edit && <Col><Link to={`/editsubscription/${this.props.subscription.id}`}>Edit</Link> </Col>}
+        {this.props.edit && <Col><Link to={`/editsubscription/${this.props.subscription.id}`}>Edit/Delete</Link> </Col>}
       </Row>
     )
   }

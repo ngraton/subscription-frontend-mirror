@@ -50,6 +50,7 @@ class EditSubscriptionForm extends React.Component {
           <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
         </Form>
         }
+        <Button key=''>Delete this entire subscription</Button>
       </div>
     )
   }
