@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Container } from 'react-bootstrap';
+import { Form, Container, Alert } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
@@ -8,6 +8,7 @@ class SignupPage extends Component {
     username: '',
     password: '',
     redirectNewSub: false,
+    errorMessage: ''
   }
   
   onChange = async (e) => {
@@ -23,17 +24,17 @@ class SignupPage extends Component {
       .then(response => {
         if (response.ok) {
           return response.json()
+          .then(_jsonResponse => {
+            localStorage.setItem('username', this.state.username)
+            this.props.setUsername(this.state.username)
+            this.setState({redirectNewSub: true})
+          })
         } else {
-          throw true
+          return response.json()
+          .then(jsonResponse => this.setState({errorMessage: jsonResponse.username || jsonResponse.password1}))
         }
-      })
-      .then(jsonResponse => {
-        // localStorage.setItem('token', jsonResponse.token)
-        localStorage.setItem('username', this.state.username)
-        this.props.setUsername(this.state.username)
-        this.setState({redirectNewSub: true})
-      })
-      .catch(_error => console.log(_error))
+      }
+    )
   }
 
   render () {
@@ -41,8 +42,8 @@ class SignupPage extends Component {
       <Container>
         {this.state.redirectNewSub && <Redirect to='/addSubscription' />}
         <div align='center'>
-        {this.state.loginFailed && <p>Unable to log in with provided credentials. Please try again.</p>}
         <h2>Sign Up</h2>
+        {this.state.errorMessage && <Alert variant='warning'>{this.state.errorMessage}</Alert>}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
             <Form.Label>username</Form.Label>
@@ -59,4 +60,5 @@ class SignupPage extends Component {
     )
   }
 }
+
 export default SignupPage;
