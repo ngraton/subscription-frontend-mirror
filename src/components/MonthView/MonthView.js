@@ -32,9 +32,8 @@ class MonthView extends Component {
   render() {
     return (
       <Container>
-        <h2>{this.props.month}</h2>
-        <Container>
-          {this.props.subscriptions.length > 0 && this.showSubscriptions()}
+        <h1>{this.props.month}</h1>
+        <Container>{this.props.subscriptions.length > 0 && this.showSubscriptions()}
         </Container>
         <Row>
         <Col></Col>
