@@ -15,7 +15,7 @@ class MonthView extends Component {
 
   showSubscriptions() {
     return this.props.subscriptions.map((subscriptionObj, index) => {
-      return <SingleSubscription key={index} subscription={subscriptionObj} edit={false}/>
+      return <SingleSubscription key={index} subscription={subscriptionObj}/>
     })
   }
 
