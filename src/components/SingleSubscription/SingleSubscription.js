@@ -9,20 +9,21 @@ const styles = {
 }
 
 class SingleSubscription extends Component {
-  getDueDate() {
-    let dueDate = this.props.subscription['due_date'].split('-')
-    if(this.props.subscription['dueInMonth']){
-      dueDate = this.props.subscription['dueInMonth'].split('-')
-    }
-    return dueDate[dueDate.length - 1]
+
+  getDueDate(monthCode) {
+    let dueDate = new Date(this.props.subscription['due_date'])
+    dueDate.setMonth(monthCode)
+    dueDate.setHours(30)
+    dueDate.getMonth() !== monthCode && dueDate.setDate(0)
+    return dueDate.getDate()
   }
 
   render() {
     return (
       <Row>
-        <Col><h3 style={styles.subscription_text}>{this.props.subscription.name}</h3></Col>
-        <Col><h3 style={styles.subscription_text}>Due on {this.getDueDate()}</h3></Col>
-        <Col><h3 style={styles.subscription_text}>$ {this.props.subscription.payment}</h3></Col>
+        <Col><p style={styles.subscription_text}>{this.props.subscription.name}</p></Col>
+        <Col><p style={styles.subscription_text}>Due on {this.getDueDate(this.props.monthCode)}</p></Col>
+        <Col><p style={styles.subscription_text}>$ {this.props.subscription.payment}</p></Col>
       </Row>
     )
   }
