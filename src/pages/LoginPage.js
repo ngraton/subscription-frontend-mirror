@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Container, Alert } from 'react-bootstrap';
+import { Button, Form, Container, Alert } from 'react-bootstrap';
 import { Redirect, Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
@@ -53,7 +53,9 @@ class LoginPage extends Component {
             <Form.Label>password</Form.Label>
             <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
-          <button type="submit">Submit</button>
+            <Button variant="primary" size="lg">
+              Submit to Sign In
+            </Button>
         </Form>
         <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
         </div>
