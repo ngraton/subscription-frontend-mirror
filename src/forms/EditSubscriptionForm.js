@@ -80,8 +80,8 @@ class EditSubscriptionForm extends React.Component {
           </Form.Group>
           <Button onClick={(e) => this.onClickDone(e)} type="submit" className="ml-2">Done</Button>
         </Form>
-        }
         <Button onClick={(e) => this.onClickDelete(e)}>Delete this entire subscription</Button>
+        }
       </div>
     )
   }
