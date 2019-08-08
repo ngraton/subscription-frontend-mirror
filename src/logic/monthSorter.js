@@ -1,13 +1,13 @@
 import DateCalculator from './DateCalculator';
 
 
-const allDueDateCalc = (dueDate, interval) => {
-  const dueDateArray = []
-  if(interval === 'monthly'){
+// const allDueDateCalc = (dueDate, interval) => {
+//   const dueDateArray = []
+//   if(interval === 'monthly'){
 
-  }
-  return dueDateArray
-}
+//   }
+//   return dueDateArray
+// }
 
 // nextDueDateCalc = (dueDate, interval) => {
 //   return 'date string'
