@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
 
@@ -7,7 +8,8 @@ class EditSubscriptionForm extends React.Component {
     name: '',
     due_date: '',
     payment: null,
-    interval: ''
+    interval: '',
+    redirect: false
   }
 
   componentDidMount() {
@@ -20,11 +22,17 @@ class EditSubscriptionForm extends React.Component {
     })} )
   }
 
+  onClickDelete(e) {
+    SubscriptionsAPI.deleteSubscription(this.props.match.params.subscriptionID)
+      .then(_response => {
+        this.setState({redirect: true})
+      })
+  }  
 
   render() {
-    console.log(this.state)
     return (
       <div>
+        {this.state.redirect && <Redirect to='/subscriptionlist' />}
         {this.state.interval &&
         <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">
           <Form.Group controlId="name">
@@ -50,7 +58,7 @@ class EditSubscriptionForm extends React.Component {
           <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
         </Form>
         }
-        <Button key=''>Delete this entire subscription</Button>
+        <Button onClick={(e) => this.onClickDelete(e)}>Delete this entire subscription</Button>
       </div>
     )
   }

@@ -12,6 +12,13 @@ const addSubscription = async (subscriptionObject) => {
   return await data;
 }
 
+const deleteSubscription = async (id) => {
+  const response = await fetch(`${url}/${id}/`, {
+    method: "DELETE"
+  });
+  return await response
+}
+
 const getSubscriptionById = async (subscriptionID) => {
   const response = await fetch(`${url}/${subscriptionID}/`);
   const data = await response.json();
@@ -20,5 +27,6 @@ const getSubscriptionById = async (subscriptionID) => {
 
 export default {
   addSubscription: addSubscription,
+  deleteSubscription: deleteSubscription,
   getSubscriptionById: getSubscriptionById,
 }
