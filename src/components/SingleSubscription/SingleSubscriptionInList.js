@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 
 class SingleSubscription extends Component {
   
@@ -12,7 +11,7 @@ class SingleSubscription extends Component {
         <Col><h3>{this.props.subscription.name}</h3></Col>
         <Col><h3>Due {this.props.subscription.interval}</h3></Col>
         <Col><h3>$ {this.props.subscription.payment}</h3></Col>
-        {this.props.edit && <Col><Link to={`/editsubscription/${this.props.subscription.id}`}>Edit/Delete</Link> </Col>}
+        {this.props.edit && <Col><a href={`/editsubscription/${this.props.subscription.id}`}>Edit/Delete</a> </Col>}
       </Row>
     )
   }

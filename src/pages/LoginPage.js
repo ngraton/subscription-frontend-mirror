@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Container, Alert } from 'react-bootstrap';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
 class LoginPage extends Component {
@@ -40,7 +40,7 @@ class LoginPage extends Component {
   render () {
     return (
       <Container>
-        {this.state.redirectHome && <Redirect to='/' />}
+        {this.state.redirectHome && window.location.assign('/')}
         <div align='center'>
         {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
         <Form onSubmit={this.handleSubmit}>
@@ -52,7 +52,7 @@ class LoginPage extends Component {
             <Form.Label>password</Form.Label>
             <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
-            <Button variant="primary" size="lg" block>
+            <Button variant="primary" size="lg" block type='submit'>
               Login
             </Button>
         </Form>

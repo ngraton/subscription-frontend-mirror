@@ -55,7 +55,7 @@ class EditSubscriptionForm extends React.Component {
   render() {
     return (
       <div>
-        {this.state.redirect && <Redirect to='/subscriptionlist' />}
+        {this.state.redirect && window.location.assign('/subscriptionlist')}
         {this.state.interval &&
         <div>
         <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">

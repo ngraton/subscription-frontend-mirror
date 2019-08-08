@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Container, Alert } from 'react-bootstrap';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
 class SignupPage extends Component {
@@ -40,7 +40,7 @@ class SignupPage extends Component {
   render () {
     return (
       <Container>
-        {this.state.redirectNewSub && <Redirect to='/addSubscription' />}
+        {this.state.redirectNewSub && window.location.assign('/addsubscription')}
         <div align='center'>
         <h2>Sign Up</h2>
         {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
