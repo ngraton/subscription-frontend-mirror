@@ -4,7 +4,6 @@ import { Container, Row, Col } from 'react-bootstrap'
 class SingleSubscription extends Component {
   getDueDate() {
     let dueDate = this.props.subscription['due_date'].split('-')
-    console.log(dueDate)
     return dueDate[dueDate.length - 1]
   }
 
