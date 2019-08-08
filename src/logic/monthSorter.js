@@ -40,7 +40,7 @@ const monthSorter = (subscription, monthlyReportArray) => {
     // console.log(dueDateList[i])
     const dueDate = new Date(dueDateList[i])
     const dueMonth = dueDate.getMonth()
-    // console.log(dueMonth)
+    subscription.dueInMonth = dueDateList[i]
     monthlyReportArray[dueMonth].push(subscription)
   }
 }

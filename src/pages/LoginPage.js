@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Container } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Form, Container, Alert } from 'react-bootstrap';
+import { Redirect, Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
 class LoginPage extends Component {
@@ -8,7 +8,7 @@ class LoginPage extends Component {
     username: '',
     password: '',
     redirectHome: false,
-    loginFailed: false
+    errorMessage: ''
   }
   
   onChange = async (e) => {
@@ -24,18 +24,17 @@ class LoginPage extends Component {
       .then(response => {
         if (response.ok) {
           return response.json()
+            .then(_jsonResponse => {
+              localStorage.setItem('username', this.state.username)
+              this.props.setUsername(this.state.username)
+              this.setState({redirectHome: true})
+            })
         } else {
-          throw true
+          return response.json()
+            .then(jsonResponse => this.setState({errorMessage: jsonResponse["non_field_errors"]}))
         }
-      })
-      .then(jsonResponse => {
-        // localStorage.setItem('token', jsonResponse.token)
-        localStorage.setItem('username', this.state.username)
-        this.props.setUsername(this.state.username)
-        this.setState({redirectHome: true})
-        // setToken(jsonResponse.token)
-      })
-      .catch(_error => this.setState({loginFailed: true}))
+      }
+    )
   }
 
   render () {
@@ -43,19 +42,20 @@ class LoginPage extends Component {
       <Container>
         {this.state.redirectHome && <Redirect to='/' />}
         <div align='center'>
-        {this.state.loginFailed && <p>Unable to log in with provided credentials. Please try again.</p>}
         <h2>Login</h2>
+        {this.state.errorMessage && <Alert variant='warning'>{this.state.errorMessage}</Alert>}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
             <Form.Label>username</Form.Label>
-            <Form.Control type="text" placeholder="username" onChange={this.onChange}/>
+            <Form.Control type="text" placeholder="username" onChange={this.onChange} required/>
           </Form.Group>
           <Form.Group controlId="formPassword">
             <Form.Label>password</Form.Label>
-            <Form.Control type="password" placeholder="password" onChange={this.onChange}/>
+            <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
           <button type="submit">Submit</button>
         </Form>
+        <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
         </div>
       </Container>
     )
