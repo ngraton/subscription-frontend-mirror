@@ -56,7 +56,8 @@ class EditSubscriptionForm extends React.Component {
     return (
       <div>
         {this.state.redirect && <Redirect to='/subscriptionlist' />}
-
+        {this.state.interval &&
+        <div>
         <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
@@ -81,7 +82,8 @@ class EditSubscriptionForm extends React.Component {
           <Button onClick={(e) => this.onClickDone(e)} type="submit" className="ml-2">Done</Button>
         </Form>
         <Button onClick={(e) => this.onClickDelete(e)}>Delete this entire subscription</Button>
-        
+        </div>
+        }
       </div>
     )
   }

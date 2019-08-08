@@ -43,7 +43,7 @@ class SignupPage extends Component {
         {this.state.redirectNewSub && <Redirect to='/addSubscription' />}
         <div align='center'>
         <h2>Sign Up</h2>
-        {this.state.errorMessage && <Alert variant='warning'>{this.state.errorMessage}</Alert>}
+        {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
             <Form.Label>username</Form.Label>
