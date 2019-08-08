@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
 
@@ -7,7 +8,8 @@ class EditSubscriptionForm extends React.Component {
     name: '',
     due_date: '',
     payment: null,
-    interval: ''
+    interval: '',
+    redirect: false
   }
 
   componentDidMount() {
@@ -20,12 +22,42 @@ class EditSubscriptionForm extends React.Component {
     })} )
   }
 
+  onChange = async (e) => {
+    await this.setState({
+      name: document.getElementById('name').value,
+      due_date: document.getElementById('due_date').value,
+      interval: document.getElementById('interval').value,
+      payment: document.getElementById('payment').value
+    })
+  }
+
+  onClickDone(e) {
+    e.preventDefault()
+    let subscriptionObj = {
+      name: this.state.name,
+      due_date: this.state.due_date,
+      payment: this.state.payment,
+      interval: this.state.interval,
+      user: this.state.user
+    }
+
+    SubscriptionsAPI.editSubscription(this.props.match.params.subscriptionID, subscriptionObj)
+      .then(_res => this.setState({redirect: true}))
+  }
+
+  onClickDelete(e) {
+    SubscriptionsAPI.deleteSubscription(this.props.match.params.subscriptionID)
+      .then(_response => {
+        this.setState({redirect: true})
+      })
+  } 
 
   render() {
-    console.log(this.state)
     return (
       <div>
+        {this.state.redirect && <Redirect to='/subscriptionlist' />}
         {this.state.interval &&
+        <div>
         <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
@@ -47,10 +79,11 @@ class EditSubscriptionForm extends React.Component {
               <option value="annual">annual</option>
             </Form.Control>
           </Form.Group>
-          <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
+          <Button onClick={(e) => this.onClickDone(e)} type="submit" className="ml-2">Done</Button>
         </Form>
+        <Button onClick={(e) => this.onClickDelete(e)}>Delete this entire subscription</Button>
+        </div>
         }
-        <Button key=''>Delete this entire subscription</Button>
       </div>
     )
   }

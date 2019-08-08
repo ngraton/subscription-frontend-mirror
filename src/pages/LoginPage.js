@@ -42,7 +42,7 @@ class LoginPage extends Component {
       <Container>
         {this.state.redirectHome && <Redirect to='/' />}
         <div align='center'>
-        {this.state.errorMessage && <Alert variant='warning'>{this.state.errorMessage}</Alert>}
+        {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
             <Form.Label>username</Form.Label>
