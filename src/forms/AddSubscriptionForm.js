@@ -64,7 +64,7 @@ class Subscription extends Component {
         user: this.state.user
       }
       SubscriptionsAPI.addSubscription(subscriptionObj)
-      this.setState({userDone: true})
+        .then(_res => this.setState({userDone: true}))
     }
   }
 
