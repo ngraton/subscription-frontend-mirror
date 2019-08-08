@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleSubscription from '../components/SingleSubscription/SingleSubscription.js';
+import SingleSubscriptionInList from '../components/SingleSubscription/SingleSubscriptionInList';
 import UsersAPI from '../api/UsersAPI'
 import { Container } from 'react-bootstrap'
 
@@ -11,7 +11,7 @@ function SubscriptionListPage({username}) {
     UsersAPI.getUserByUsername(username)
         .then(response => response[0].subscriptions)
             .then(subscriptions => subscriptions.map((subscriptionObj, index) => {
-              return <SingleSubscription key={index} subscription={subscriptionObj} edit={true}/>
+              return <SingleSubscriptionInList key={index} subscription={subscriptionObj} edit={true}/>
             })).then(
               subArray => setSubscriptions(subArray))
     }, [ username ] )
