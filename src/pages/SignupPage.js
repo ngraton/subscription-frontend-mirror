@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Container, Alert } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
 class SignupPage extends Component {
@@ -47,14 +47,15 @@ class SignupPage extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
             <Form.Label>username</Form.Label>
-            <Form.Control type="text" placeholder="username" onChange={this.onChange}/>
+            <Form.Control type="text" placeholder="username" onChange={this.onChange} required/>
           </Form.Group>
           <Form.Group controlId="formPassword">
             <Form.Label>password</Form.Label>
-            <Form.Control type="password" placeholder="password" onChange={this.onChange}/>
+            <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
           <button type="submit">Submit</button>
         </Form>
+        <p>Already have an account? <Link to='/login'>Login</Link></p>
         </div>
       </Container>
     )
