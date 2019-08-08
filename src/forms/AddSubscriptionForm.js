@@ -78,28 +78,28 @@ class Subscription extends Component {
          <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control required type="text" placeholder="name"/>
-            <br/>
-            <Form.Text>Name of subscription</Form.Text>
-          </Form.Group>
-          <Form.Group controlId="due_date">
-            <Form.Label>Due Date</Form.Label>
-            <Form.Control required type="date" />
-          </Form.Group>
-          <Form.Group controlId="payment">
-            <Form.Label>Cost</Form.Label>
-            <Form.Control required type="number" />
+            <Form.Control required type="text" placeholder="Who do you pay for this subscription?"/>
+            {/* <Form.Text>^What is the name of the company you pay for this subscription?^</Form.Text> */}
           </Form.Group>
           <Form.Group controlId="interval">
             <Form.Label>Payment Interval</Form.Label>
+            <Form.Text>Is the payment schedule monthly, quarterly, or annually?</Form.Text>
             <Form.Control required as="select">
               <option></option>
               <option>monthly</option>
               <option>quarterly</option>
               <option>annual</option>
             </Form.Control>
-            <br/>
-            <Form.Text>How often payment is required in days</Form.Text>
+          </Form.Group>
+          <Form.Group controlId="due_date">
+            <Form.Label>Due Date</Form.Label>
+            <Form.Text>When is your next payment due?</Form.Text>
+            <Form.Control required type="date" />
+          </Form.Group>
+          <Form.Group controlId="payment">
+            <Form.Label>Cost</Form.Label>
+            <Form.Text>How much is your payment?</Form.Text>
+            <Form.Control required type="number" />
           </Form.Group>
           <Button onClick={this.onClickAddAnother} type="submit">Add Another</Button>
           <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
