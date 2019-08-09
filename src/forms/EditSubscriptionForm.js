@@ -1,6 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, InputGroup } from 'react-bootstrap';
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
 
 class EditSubscriptionForm extends React.Component {
@@ -69,7 +68,11 @@ class EditSubscriptionForm extends React.Component {
           </Form.Group>
           <Form.Group controlId="payment">
             <Form.Label>Cost</Form.Label>
-            <Form.Control required type="number" defaultValue={this.state.payment}/>
+            <InputGroup className="mb-3">
+              <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
+              <Form.Control required type="number" min="0" step="1" placeholder="Amount (to the nearest dollar)"/>
+              <InputGroup.Append><InputGroup.Text>.00</InputGroup.Text></InputGroup.Append>
+            </InputGroup>
           </Form.Group>
           <Form.Group controlId="interval">
             <Form.Label>Payment Interval</Form.Label>
