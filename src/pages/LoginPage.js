@@ -46,11 +46,15 @@ class LoginPage extends Component {
         <Container className="w-50 p-3" >
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
-            <Form.Label>username</Form.Label>
+            <div className="form-row align-items-left">
+            <Form.Label>USERNAME</Form.Label>
+            </div>
             <Form.Control type="text" placeholder="username" onChange={this.onChange} required/>
           </Form.Group>
           <Form.Group controlId="formPassword">
-            <Form.Label>password</Form.Label>
+          <div className="form-row align-items-left">
+            <Form.Label>PASSWORD</Form.Label>
+            </div>
             <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
             <Button variant="primary" size="lg" block type="submit">
