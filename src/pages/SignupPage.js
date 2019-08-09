@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Container, Alert } from 'react-bootstrap';
+import { Form, Container, Alert, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
@@ -41,20 +41,27 @@ class SignupPage extends Component {
     return (
       <Container>
         {this.state.redirectNewSub && window.location.assign('/addsubscription')}
-        <div align='center'>
-        <h2>Sign Up</h2>
+        <div align='center' className='border border-primary'>
         {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
+        <Container className="w-50 p-3" >
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
-            <Form.Label>username</Form.Label>
+          <div className="form-row align-items-left">
+            <Form.Label>USERNAME</Form.Label>
+            </div>
             <Form.Control type="text" placeholder="username" onChange={this.onChange} required/>
           </Form.Group>
           <Form.Group controlId="formPassword">
-            <Form.Label>password</Form.Label>
+          <div className="form-row align-items-left">
+            <Form.Label>PASSWORD</Form.Label>
+            </div>
             <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
           </Form.Group>
-          <button type="submit">Submit</button>
+          <Button variant="primary" size="lg" block type="submit">
+              Sign Up
+            </Button>
         </Form>
+        </Container>
         <p>Already have an account? <Link to='/login'>Login</Link></p>
         </div>
       </Container>
