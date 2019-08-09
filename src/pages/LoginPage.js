@@ -63,9 +63,7 @@ class LoginPage extends Component {
         </Form>
         </Container>
         <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
-        <p>For account deletion or password reset, please email
-           <a href='mailto: admin@subreckoner.com'> admin@subreckoner.com </a>
-        </p>
+        <p>For account deletion or password reset, please email <a href='mailto: admin@subreckoner.com'>admin@subreckoner.com</a></p>
         </div>
       </Container>
     )
