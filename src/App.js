@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import AddSubscriptionForm from './forms/AddSubscriptionForm';
@@ -14,7 +14,6 @@ function App() {
 
   return (
     <Router>
-      {/* this line needs to change so people can sign up */}
       <AppNavBar setUsername={setUsername} username={username}/>
       <Switch>
       <Route exact path="/signup" render={

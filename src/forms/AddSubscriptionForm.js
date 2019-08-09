@@ -72,7 +72,7 @@ class Subscription extends Component {
   render () {
     return (
       <div align='center'>
-        {this.state.userDone && <Redirect to="/" />}
+        {this.state.userDone && window.location.assign('/')}
         {this.state.loggedin === false && <Redirect to='/login'/>}
         {this.state.submitted && <Alert variant="success" onClose={() => this.setState({submitted: false})} dismissible>Your subscription to {this.state.submittedName} was added</Alert>}
          <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">

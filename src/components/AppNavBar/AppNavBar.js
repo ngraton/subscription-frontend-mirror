@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import AuthenticationsAPI from '../../api/AuthenticationsAPI';
+import './AppNavBar.css';
 
 function AppNavBar({ username, setUserName }) {
 
@@ -28,13 +29,13 @@ function AppNavBar({ username, setUserName }) {
       <Navbar className="bg-light justify-content-between" expand="lg">
         <Navbar.Brand>SubReckoner</Navbar.Brand>
         <Nav.Item>
-          {logedIn && <Nav.Link href='/addsubscription'>Add New Subscription</Nav.Link>}
+          {logedIn && <Nav.Link href='/addsubscription' className={window.location.pathname === '/addsubscription' && 'active'}>Add New Subscription</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
-          {logedIn && <Nav.Link href='/subscriptionlist'>Subscription List</Nav.Link>}
+          {logedIn && <Nav.Link href='/subscriptionlist' className={window.location.pathname === '/subscriptionlist' && 'active'}>Subscription List</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
-          {logedIn && <Nav.Link href='/'>Report by Month</Nav.Link>}
+          {logedIn && <Nav.Link href='/' className={window.location.pathname === '/' && 'active'}>Report by Month</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
           { username }

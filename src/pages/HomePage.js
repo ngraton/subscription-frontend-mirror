@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import MonthView from '../components/MonthView/MonthView';
 import UsersAPI from '../api/UsersAPI';
 import monthSorter from '../logic/monthSorter';

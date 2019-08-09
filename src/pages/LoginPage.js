@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form, Container, Alert } from 'react-bootstrap';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
 
 class LoginPage extends Component {
@@ -40,7 +40,7 @@ class LoginPage extends Component {
   render () {
     return (
       <Container>
-        {this.state.redirectHome && <Redirect to='/' />}
+        {this.state.redirectHome && window.location.assign('/')}
         <div align='center' className='border border-primary'>
         {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
         <Container className="w-50 p-3" >
