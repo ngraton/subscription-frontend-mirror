@@ -19,16 +19,6 @@ class MonthView extends Component {
     })
   }
 
-// subscriptionObj
-// {
-//   "id": 1,
-//   "name": "big bill",
-//   "due_date": "2019-08-14",
-//   "payment": 100000,
-//   "interval": "annual",
-//   "user": 1
-// }
-
   render() {
     return (
       <Container>
