@@ -13,6 +13,7 @@ function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('username'))
 
   return (
+    <div className="App">
     <Router>
       <AppNavBar setUsername={setUsername} username={username}/>
       <div className="page-margin">
@@ -35,6 +36,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </div>
   );
 }
 
