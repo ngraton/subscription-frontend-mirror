@@ -27,7 +27,7 @@ function AppNavBar({ username, setUserName }) {
   return (
     <div>
       <Navbar className="bg-light justify-content-between" expand="lg">
-        <Navbar.Brand>SubReckoner</Navbar.Brand>
+        <Navbar.Brand><h2 className="ml-5 font-weight-bold">$ubReckoner</h2></Navbar.Brand>
         <Nav.Item>
           {logedIn && <Nav.Link href='/' className={window.location.pathname === '/' && 'active'}>Report by Month</Nav.Link>}
         </Nav.Item>
