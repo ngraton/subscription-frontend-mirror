@@ -29,13 +29,13 @@ function AppNavBar({ username, setUserName }) {
       <Navbar className="bg-light justify-content-between" expand="lg">
         <Navbar.Brand>SubReckoner</Navbar.Brand>
         <Nav.Item>
+          {logedIn && <Nav.Link href='/' className={window.location.pathname === '/' && 'active'}>Report by Month</Nav.Link>}
+        </Nav.Item>
+        <Nav.Item>
           {logedIn && <Nav.Link href='/addsubscription' className={window.location.pathname === '/addsubscription' && 'active'}>Add New Subscription</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
           {logedIn && <Nav.Link href='/subscriptionlist' className={window.location.pathname === '/subscriptionlist' && 'active'}>Subscription List</Nav.Link>}
-        </Nav.Item>
-        <Nav.Item>
-          {logedIn && <Nav.Link href='/' className={window.location.pathname === '/' && 'active'}>Report by Month</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
           { username }
