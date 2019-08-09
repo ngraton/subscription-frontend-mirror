@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button, Alert, InputGroup, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
 import UsersAPI from '../api/UsersAPI'
@@ -103,7 +103,11 @@ class Subscription extends Component {
           <Form.Group controlId="payment">
             <Form.Label>Cost</Form.Label>
             <Form.Text>How much is your payment?</Form.Text>
-            <Form.Control required type="number" />
+            <InputGroup className="mb-3">
+              <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
+              <Form.Control required type="number" min="0" step="1" placeholder="Amount (to the nearest dollar)"/>
+              <InputGroup.Append><InputGroup.Text>.00</InputGroup.Text></InputGroup.Append>
+            </InputGroup>
           </Form.Group>
           <Button onClick={this.onClickAddAnother} type="submit">Add Another</Button>
           <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
