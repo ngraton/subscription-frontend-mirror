@@ -7,7 +7,7 @@ import AppNavBar from './components/AppNavBar/AppNavBar';
 import EditSubscriptionForm from './forms/EditSubscriptionForm';
 import SubscriptionListPage from './pages/SubscriptionListPage';
 import SignupPage from './pages/SignupPage';
-// import './App.css';
+import './App.css';
 
 function App() {
   const [username, setUsername] = React.useState(localStorage.getItem('username'))
@@ -15,23 +15,25 @@ function App() {
   return (
     <Router>
       <AppNavBar setUsername={setUsername} username={username}/>
-      <Switch>
-      <Route exact path="/signup" render={
-        props => <SignupPage {...props} setUsername={setUsername} />
-      }/>
-      <Route exact path="/login" render={
-        props => <LoginPage {...props} setUsername={ setUsername } />
-      }/>
-      {!username && <Redirect to="/login" />}
-        <Route exact path="/" render={
-          props => <HomePage {...props} username={ username }/>
+      <div className="page-margin">
+        <Switch>
+        <Route exact path="/signup" render={
+          props => <SignupPage {...props} setUsername={setUsername} />
         }/>
-        <Route exact path="/addsubscription" render={
-          props => <AddSubscriptionForm {...props} username={ username }/>
+        <Route exact path="/login" render={
+          props => <LoginPage {...props} setUsername={ setUsername } />
         }/>
-        <Route exact path="/subscriptionlist" render={props => <SubscriptionListPage {...props} username={ username } />} />
-        <Route exact path="/editsubscription/:subscriptionID" render={props => <EditSubscriptionForm {...props} username={ username } />}/>
-      </Switch>
+        {!username && <Redirect to="/login" />}
+          <Route exact path="/" render={
+            props => <HomePage {...props} username={ username }/>
+          }/>
+          <Route exact path="/addsubscription" render={
+            props => <AddSubscriptionForm {...props} username={ username }/>
+          }/>
+          <Route exact path="/subscriptionlist" render={props => <SubscriptionListPage {...props} username={ username } />} />
+          <Route exact path="/editsubscription/:subscriptionID" render={props => <EditSubscriptionForm {...props} username={ username } />}/>
+        </Switch>
+      </div>
     </Router>
   );
 }

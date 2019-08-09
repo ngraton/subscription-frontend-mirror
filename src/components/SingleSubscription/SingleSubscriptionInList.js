@@ -7,9 +7,9 @@ class SingleSubscription extends Component {
   render() {
     return (
       <Row className='Subscription-text'>
-        <Col><h3>{this.props.subscription.name}</h3></Col>
-        <Col><h3>Due {this.props.subscription.interval}</h3></Col>
-        <Col><h3>$ {this.props.subscription.payment}</h3></Col>
+        <Col><p className='Subscription-text'>{this.props.subscription.name}</p></Col>
+        <Col><p className='Subscription-text'>Due {this.props.subscription.interval}</p></Col>
+        <Col><p className='Subscription-text'>$ {this.props.subscription.payment}</p></Col>
         {this.props.edit && <Col><a href={`/editsubscription/${this.props.subscription.id}`}>Edit/Delete</a></Col>}
       </Row>
     )
