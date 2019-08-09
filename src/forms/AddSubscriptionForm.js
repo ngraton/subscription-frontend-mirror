@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Alert, InputGroup } from 'react-bootstrap';
+import { Form, Button, Alert, InputGroup, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
 import UsersAPI from '../api/UsersAPI'
@@ -70,12 +70,16 @@ class Subscription extends Component {
 
 
   render () {
+    const styleobj = {
+      paddingBottom: '1%'
+    }
     return (
-      <div align='center'>
+      <div align='center' className='border border-primary' style={styleobj}>
         {this.state.userDone && window.location.assign('/')}
         {this.state.loggedin === false && <Redirect to='/login'/>}
+        <Container>
         {this.state.submitted && <Alert variant="success" onClose={() => this.setState({submitted: false})} dismissible>Your subscription to {this.state.submittedName} was added</Alert>}
-         <Form id="subscription_form" onChange={this.onChange}>
+         <Form id="subscription_form" onChange={this.onChange} className="w-50 p-3">
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control required type="text" placeholder="Who do you pay for this subscription?"/>
@@ -94,7 +98,7 @@ class Subscription extends Component {
           <Form.Group controlId="due_date">
             <Form.Label>Due Date</Form.Label>
             <Form.Text>When is your next payment due?</Form.Text>
-            <Form.Control required type="date" />
+            <Form.Control required type="date" align="center" />
           </Form.Group>
           <Form.Group controlId="payment">
             <Form.Label>Cost</Form.Label>
@@ -108,6 +112,7 @@ class Subscription extends Component {
           <Button onClick={this.onClickAddAnother} type="submit">Add Another</Button>
           <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
         </Form>
+        </Container>
       </div>
     )
   }
