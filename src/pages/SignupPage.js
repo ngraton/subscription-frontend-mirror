@@ -59,6 +59,7 @@ class SignupPage extends Component {
        </Form>
        </Container>
        <p>Already have an account? <Link to='/login'>Login</Link></p>
+       <p>For account deletion or password reset, please email admin@subreckoner.com</p>
        </div>
      </Container>
    )
