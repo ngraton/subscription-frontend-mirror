@@ -52,12 +52,15 @@ class EditSubscriptionForm extends React.Component {
   } 
 
   render() {
+    const styleobj = {
+      paddingBottom: '1%'
+    }
     return (
-      <div>
+      <div align='center' className='border border-primary' style={styleobj}>
         {this.state.redirect && window.location.assign('/subscriptionlist')}
         {this.state.interval &&
         <div>
-        <Form id="subscription_form" onChange={this.onChange}>
+        <Form id="subscription_form" onChange={this.onChange} className="w-50 p-3" align='left'>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control required type="text" defaultValue={this.state.name}/>
@@ -84,7 +87,7 @@ class EditSubscriptionForm extends React.Component {
           </Form.Group>
           <Button onClick={(e) => this.onClickDone(e)} type="submit" className="ml-2">Done</Button>
         </Form>
-        <Button onClick={(e) => this.onClickDelete(e)}>Delete this entire subscription</Button>
+        <Button onClick={(e) => this.onClickDelete(e)} className="ml-2 mt-3" variant="danger">Delete this entire subscription</Button>
         </div>
         }
       </div>
