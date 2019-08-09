@@ -58,7 +58,7 @@ class EditSubscriptionForm extends React.Component {
         {this.state.redirect && window.location.assign('/subscriptionlist')}
         {this.state.interval &&
         <div>
-        <Form id="subscription_form" onChange={this.onChange} className="px-5 py-4">
+        <Form id="subscription_form" onChange={this.onChange}>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control required type="text" defaultValue={this.state.name}/>
