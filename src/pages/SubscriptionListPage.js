@@ -19,7 +19,9 @@ function SubscriptionListPage({username}) {
   return (
     <Container>
       <h2>Subscriptions</h2>
-      {subscriptions}
+      <Container>
+        {subscriptions}
+      </Container>
     </Container>
   )
 }
