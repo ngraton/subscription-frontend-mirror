@@ -79,7 +79,7 @@ class Subscription extends Component {
         {this.state.loggedin === false && <Redirect to='/login'/>}
         <Container>
         {this.state.submitted && <Alert variant="success" onClose={() => this.setState({submitted: false})} dismissible>Your subscription to {this.state.submittedName} was added</Alert>}
-         <Form id="subscription_form" onChange={this.onChange} className="w-50 p-3">
+         <Form id="subscription_form" onChange={this.onChange} className="w-50 p-3" align='left'>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
             <Form.Control required type="text" placeholder="Who do you pay for this subscription?"/>
