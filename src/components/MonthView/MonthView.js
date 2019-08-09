@@ -42,6 +42,7 @@ class MonthView extends Component {
             <h3>Total $ {this.getMonthlyTotal()}</h3>
           </Col>
         </Row>
+        <hr></hr>
       </Container>
     )
   }
