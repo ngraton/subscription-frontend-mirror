@@ -41,8 +41,9 @@ class LoginPage extends Component {
     return (
       <Container>
         {this.state.redirectHome && window.location.assign('/')}
-        <div align='center'>
+        <div align='center' className='border border-primary'>
         {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
+        <Container className="w-50 p-3" >
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="formUserName">
             <Form.Label>username</Form.Label>
@@ -56,6 +57,7 @@ class LoginPage extends Component {
               Login
             </Button>
         </Form>
+        </Container>
         <p>Don't have an account? <Link to='/signup'>Sign Up</Link></p>
         </div>
       </Container>
