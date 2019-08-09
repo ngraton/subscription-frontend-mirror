@@ -4,6 +4,9 @@ import UsersAPI from '../api/UsersAPI'
 import { Container } from 'react-bootstrap'
 
 function SubscriptionListPage({username}) {
+  const styleObjH2 = {
+    paddingBottom: '2%'
+  }
 
   const [ subscriptions, setSubscriptions ] = React.useState([])
 
@@ -17,8 +20,10 @@ function SubscriptionListPage({username}) {
     }, [ username ] )
 
   return (
-    <Container>
-      <h2>Subscriptions</h2>
+    <Container className='border border-primary'>
+      <div>
+      <h2 style={styleObjH2}>Subscriptions</h2>
+      </div>
       <Container>
         {subscriptions}
       </Container>
