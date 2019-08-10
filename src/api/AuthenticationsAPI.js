@@ -11,13 +11,13 @@ const login = async (username, password) => {
   return await response;
 }
 
-const registration = async (username, password) => {
+const registration = async (username, password, phoneNumber) => {
   const response = await fetch(`${url}/registration/`, {
     headers: {
       'Content-Type': 'application/json'
     },
     method: "POST",
-    body: JSON.stringify({username: username, password1: password, password2: password})
+    body: JSON.stringify({username: username, password1: password, password2: password, phone_number: phoneNumber})
   });
   return await response;
 }

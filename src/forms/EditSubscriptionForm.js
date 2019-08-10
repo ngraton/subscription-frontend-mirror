@@ -31,17 +31,19 @@ class EditSubscriptionForm extends React.Component {
   }
 
   onClickDone(e) {
-    e.preventDefault()
-    let subscriptionObj = {
-      name: this.state.name,
-      due_date: this.state.due_date,
-      payment: this.state.payment,
-      interval: this.state.interval,
-      user: this.state.user
+    if (this.state.name && this.state.due_date && this.state.interval && Number.isInteger(Number(this.state.payment)) && this.state.payment > 0) {
+      e.preventDefault()
+      let subscriptionObj = {
+        name: this.state.name,
+        due_date: this.state.due_date,
+        payment: this.state.payment,
+        interval: this.state.interval,
+        user: this.state.user
+      }
+  
+      SubscriptionsAPI.editSubscription(this.props.match.params.subscriptionID, subscriptionObj)
+        .then(_res => this.setState({redirect: true}))
     }
-
-    SubscriptionsAPI.editSubscription(this.props.match.params.subscriptionID, subscriptionObj)
-      .then(_res => this.setState({redirect: true}))
   }
 
   onClickDelete(e) {
@@ -73,7 +75,7 @@ class EditSubscriptionForm extends React.Component {
             <Form.Label>Cost</Form.Label>
             <InputGroup className="mb-3">
               <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
-              <Form.Control required type="number" defaultValue={this.state.payment} min="0" step="1" placeholder="Amount (to the nearest dollar)"/>
+              <Form.Control required type="number" pattern="[0-9]" min="1" step="1" defaultValue={this.state.payment} placeholder="Amount (to the nearest dollar)"/>
               <InputGroup.Append><InputGroup.Text>.00</InputGroup.Text></InputGroup.Append>
             </InputGroup>
           </Form.Group>
