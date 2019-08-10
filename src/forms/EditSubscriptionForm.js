@@ -75,7 +75,7 @@ class EditSubscriptionForm extends React.Component {
             <Form.Label>Cost</Form.Label>
             <InputGroup className="mb-3">
               <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
-              <Form.Control required type="number" defaultValue={this.state.payment} min="0" step="1" placeholder="Amount (to the nearest dollar)"/>
+              <Form.Control required type="number" pattern="[0-9]" min="1" step="1" defaultValue={this.state.payment} placeholder="Amount (to the nearest dollar)"/>
               <InputGroup.Append><InputGroup.Text>.00</InputGroup.Text></InputGroup.Append>
             </InputGroup>
           </Form.Group>
