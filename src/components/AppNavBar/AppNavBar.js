@@ -39,7 +39,7 @@ function AppNavBar({ username, setUserName }) {
         </Nav.Item>
         {logedIn &&
         <NavDropdown title="Visual Graph Reports" id="nav-dropdown">
-        <NavDropdown.Item href='/subscriptionlist' eventKey="4.1">Monthly Report Graph</NavDropdown.Item>
+        <NavDropdown.Item href='/monthlygraph' eventKey="4.1">Monthly Report Graph</NavDropdown.Item>
         <NavDropdown.Item href='/subscriptionlist' eventKey="4.2">Annual Report Graph</NavDropdown.Item>
       </NavDropdown>}
         <Nav.Item>
