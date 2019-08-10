@@ -40,7 +40,7 @@ function AppNavBar({ username, setUserName }) {
         {logedIn &&
         <NavDropdown title="Visual Graph Reports" id="nav-dropdown">
         <NavDropdown.Item href='/monthlygraph' eventKey="4.1">Monthly Report Graph</NavDropdown.Item>
-        <NavDropdown.Item href='/subscriptionlist' eventKey="4.2">Annual Report Graph</NavDropdown.Item>
+        <NavDropdown.Item href='/annualgraph' eventKey="4.2">Annual Report Graph</NavDropdown.Item>
       </NavDropdown>}
         <Nav.Item>
         {logedIn && <>{ username + ':' }</>}{logInOrOut()}

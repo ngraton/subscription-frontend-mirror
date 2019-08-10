@@ -8,6 +8,7 @@ import EditSubscriptionForm from './forms/EditSubscriptionForm';
 import SubscriptionListPage from './pages/SubscriptionListPage';
 import SignupPage from './pages/SignupPage';
 import MonthlyGraphPage from './pages/MonthlyGraphPage';
+import AnnualGraphPage from './pages/AnnualGraphPage';
 import './App.css';
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
           }/>
           <Route exact path="/monthlygraph" render={
             props => <MonthlyGraphPage {...props} username={ username }/>
+          }/>
+          <Route exact path="/annualgraph" render={
+            props => <AnnualGraphPage {...props} username={ username }/>
           }/>
           <Route exact path="/addsubscription" render={
             props => <AddSubscriptionForm {...props} username={ username }/>
