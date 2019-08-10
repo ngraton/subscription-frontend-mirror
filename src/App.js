@@ -7,6 +7,7 @@ import AppNavBar from './components/AppNavBar/AppNavBar';
 import EditSubscriptionForm from './forms/EditSubscriptionForm';
 import SubscriptionListPage from './pages/SubscriptionListPage';
 import SignupPage from './pages/SignupPage';
+import MonthlyGraphPage from './pages/MonthlyGraphPage';
 import './App.css';
 
 function App() {
@@ -27,6 +28,9 @@ function App() {
         {!username && <Redirect to="/login" />}
           <Route exact path="/" render={
             props => <HomePage {...props} username={ username }/>
+          }/>
+          <Route exact path="/monthlygraph" render={
+            props => <MonthlyGraphPage {...props} username={ username }/>
           }/>
           <Route exact path="/addsubscription" render={
             props => <AddSubscriptionForm {...props} username={ username }/>
