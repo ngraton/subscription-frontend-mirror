@@ -20,7 +20,7 @@ function AppNavBar({ username, setUserName }) {
 
   const logInOrOut = () => {
     if(logedIn){
-      return <Nav.Link href="/login" onSelect={handleLogout}>Logout</Nav.Link>
+      return <a href="/login" onClick={handleLogout}>Logout</a>
     }
   }
 
@@ -38,10 +38,7 @@ function AppNavBar({ username, setUserName }) {
           {logedIn && <Nav.Link href='/subscriptionlist' className={window.location.pathname === '/subscriptionlist' && 'active'}>Subscription List</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
-          { username }
-        </Nav.Item>
-        <Nav.Item>
-          {logInOrOut()}
+        {logedIn && <>{ username + ':' }</>}{logInOrOut()}
         </Nav.Item>
       </Navbar>
     </div>
