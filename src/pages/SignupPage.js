@@ -7,14 +7,17 @@ class SignupPage extends Component {
    username: '',
    password: '',
    redirectNewSub: false,
-   errorMessage: ''
+   errorMessage: '',
+   phoneNumber: false
  }
+
  onChange = async (e) => {
    await this.setState({
      username: document.getElementById('formUserName').value,
      password: document.getElementById('formPassword').value
    })
  }
+
  handleSubmit = (e) => {
    e.preventDefault()
    AuthenticationsAPI.registration(this.state.username, this.state.password)
@@ -33,31 +36,50 @@ class SignupPage extends Component {
      }
    )
  }
+
  render () {
    return (
      <Container>
        {this.state.redirectNewSub && window.location.assign('/addsubscription')}
        <div align='center' className='border border-primary'>
        {this.state.errorMessage && <Alert variant='danger'>{this.state.errorMessage}</Alert>}
+       
        <Container className="w-50 p-3" >
        <Form onSubmit={this.handleSubmit}>
+
          <Form.Group controlId="formUserName">
          <div className="form-row align-items-left">
            <Form.Label>USERNAME</Form.Label>
            </div>
            <Form.Control type="text" placeholder="username" onChange={this.onChange} required/>
          </Form.Group>
+
          <Form.Group controlId="formPassword">
          <div className="form-row align-items-left">
            <Form.Label>PASSWORD</Form.Label>
            </div>
            <Form.Control type="password" placeholder="password" onChange={this.onChange} required/>
          </Form.Group>
+
+         <Form.Group id="formGridCheckbox">
+          <Form.Check onClick={(e) => this.setState({phoneNumber: !this.state.phoneNumber})} type="checkbox" label="Sign up for push notification (optional)" />
+         </Form.Group>
+
+        {this.state.phoneNumber && 
+         <Form.Group controlId="formUserNumber">
+          <div className="form-row align-items-left">
+            <Form.Label>PHONE-NUMBER (xxx-xxx-xxxx)</Form.Label>
+          </div>
+          <Form.Control type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="xxx-xxx-xxxx" onChange={this.onChange} required/>
+         </Form.Group>
+        }
+
          <Button variant="primary" size="lg" block type="submit">
              Sign Up
-           </Button>
+         </Button>
        </Form>
        </Container>
+
        <p>Already have an account? <Link to='/login'>Login</Link></p>
        <p>For account deletion or password reset, please email <a href='mailto: admin@subreckoner.com'>admin@subreckoner.com</a></p>
        </div>

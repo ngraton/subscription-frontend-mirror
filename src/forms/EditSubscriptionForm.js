@@ -31,17 +31,19 @@ class EditSubscriptionForm extends React.Component {
   }
 
   onClickDone(e) {
-    e.preventDefault()
-    let subscriptionObj = {
-      name: this.state.name,
-      due_date: this.state.due_date,
-      payment: this.state.payment,
-      interval: this.state.interval,
-      user: this.state.user
+    if (this.state.name && this.state.due_date && this.state.interval && Number.isInteger(Number(this.state.payment)) && this.state.payment > 0) {
+      e.preventDefault()
+      let subscriptionObj = {
+        name: this.state.name,
+        due_date: this.state.due_date,
+        payment: this.state.payment,
+        interval: this.state.interval,
+        user: this.state.user
+      }
+  
+      SubscriptionsAPI.editSubscription(this.props.match.params.subscriptionID, subscriptionObj)
+        .then(_res => this.setState({redirect: true}))
     }
-
-    SubscriptionsAPI.editSubscription(this.props.match.params.subscriptionID, subscriptionObj)
-      .then(_res => this.setState({redirect: true}))
   }
 
   onClickDelete(e) {

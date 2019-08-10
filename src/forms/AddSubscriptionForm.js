@@ -38,7 +38,7 @@ class Subscription extends Component {
   }
 
   onClickAddAnother = (e) => {
-    if (this.state.name && this.state.due_date && this.state.interval && this.state.payment) {
+    if (this.state.name && this.state.due_date && this.state.interval && Number.isInteger(Number(this.state.payment)) && this.state.payment > 0) {
       e.preventDefault()
       let subscriptionObj = {
         name: this.state.name,
@@ -54,7 +54,7 @@ class Subscription extends Component {
   }
 
   onClickDone = (e) => {
-    if (this.state.name && this.state.due_date && this.state.interval && this.state.payment) {
+    if (this.state.name && this.state.due_date && this.state.interval && Number.isInteger(Number(this.state.payment)) && this.state.payment > 0) {
       e.preventDefault()
       let subscriptionObj = {
         name: this.state.name,
@@ -105,7 +105,7 @@ class Subscription extends Component {
             <Form.Text>How much is your payment?</Form.Text>
             <InputGroup className="mb-3">
               <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
-              <Form.Control required type="number" min="0" step="1" placeholder="Amount (to the nearest dollar)"/>
+              <Form.Control type="number" pattern="[0-9]" min="1" step="1" placeholder="Amount (to the nearest dollar)" required/>
               <InputGroup.Append><InputGroup.Text>.00</InputGroup.Text></InputGroup.Append>
             </InputGroup>
           </Form.Group>
