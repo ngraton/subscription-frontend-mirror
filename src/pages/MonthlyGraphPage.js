@@ -1,20 +1,41 @@
 import React, { Component } from 'react';
-import { Form, Button, Alert, InputGroup, Container } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom'
-import SubscriptionsAPI from '../api/SubscriptionsAPI';
-import UsersAPI from '../api/UsersAPI'
+import { Redirect } from 'react-router-dom';
+import MonthGraphView from '../components/MonthGraphView/MonthGraphView';
+import UsersAPI from '../api/UsersAPI';
+import monthSorter from '../logic/monthSorter';
 
+class MonthlyGraphPage extends Component {
+  state = {
+    loggedin: true,
+    subscriptions: {}
+  }
 
-class MonthlyGraph extends Component {
-  render(){
-  return(
-    <p>Monthly Graph</p>
-  )
+  componentDidMount() {
+    if(localStorage.getItem('username')){
+      UsersAPI.getUserByUsername(localStorage.getItem('username'))
+        .then(response => response[0].subscriptions)
+          .then(subscriptions => monthSorter.sortSubsByMonth(subscriptions))
+            .then(sortedSubs => this.setState({subscriptions: sortedSubs}))
+    }
+  }
 
-  
+  generateSubscriptions() {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let date = new Date()
+    let currentMonth = date.getMonth()
+    let month = months[currentMonth]
+    
+    return <MonthGraphView month={month} subscriptions={this.state.subscriptions[month] ? this.state.subscriptions[month] : []} monthCode={currentMonth}/>
+  }
+
+  render() {
+    return (
+      <div>
+        {this.state.loggedin === false && <Redirect to='/login'/>}
+        {this.generateSubscriptions()}
+      </div>
+    )
   }
 }
 
-
-
-export default MonthlyGraph;
+export default MonthlyGraphPage
