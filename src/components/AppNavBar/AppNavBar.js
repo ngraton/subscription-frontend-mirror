@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
 import AuthenticationsAPI from '../../api/AuthenticationsAPI';
 import './AppNavBar.css';
 
@@ -37,6 +37,11 @@ function AppNavBar({ username, setUserName }) {
         <Nav.Item>
           {logedIn && <Nav.Link href='/subscriptionlist' className={window.location.pathname === '/subscriptionlist' && 'active'}>Subscription List</Nav.Link>}
         </Nav.Item>
+        {logedIn &&
+        <NavDropdown title="Visual Graph Reports" id="nav-dropdown">
+        <NavDropdown.Item href='/subscriptionlist' eventKey="4.1">Monthly Report Graph</NavDropdown.Item>
+        <NavDropdown.Item href='/subscriptionlist' eventKey="4.2">Annual Report Graph</NavDropdown.Item>
+      </NavDropdown>}
         <Nav.Item>
         {logedIn && <>{ username + ':' }</>}{logInOrOut()}
         </Nav.Item>
