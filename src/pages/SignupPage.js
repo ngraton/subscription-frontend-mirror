@@ -6,6 +6,7 @@ class SignupPage extends Component {
  state = {
    username: '',
    password: '',
+   userNumber: '',
    redirectNewSub: false,
    errorMessage: '',
    phoneNumber: false
@@ -18,9 +19,15 @@ class SignupPage extends Component {
    })
  }
 
+ onChangePhone = async (e) => {
+  await this.setState({
+    userNumber: document.getElementById('formUserNumber').value
+  })
+}
+
  handleSubmit = (e) => {
    e.preventDefault()
-   AuthenticationsAPI.registration(this.state.username, this.state.password)
+   AuthenticationsAPI.registration(this.state.username, this.state.password, this.state.userNumber.split('-').join(''))
      .then(response => {
        if (response.ok) {
          return response.json()
@@ -70,7 +77,7 @@ class SignupPage extends Component {
           <div className="form-row align-items-left">
             <Form.Label>PHONE-NUMBER (xxx-xxx-xxxx)</Form.Label>
           </div>
-          <Form.Control type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="xxx-xxx-xxxx" onChange={this.onChange} required/>
+          <Form.Control type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="xxx-xxx-xxxx" onChange={this.onChangePhone} required/>
          </Form.Group>
         }
 
