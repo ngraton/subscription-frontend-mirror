@@ -15,7 +15,8 @@ class Subscription extends Component {
     userDone: false,
     loggedin: true,
     submitted: false,
-    submittedName: ''
+    submittedName: '',
+    subscriptionNames: [],
   }
 
   componentDidMount() {
@@ -27,6 +28,10 @@ class Subscription extends Component {
         })
       }
     })
+    UsersAPI.getUserByUsername(this.props.username)
+      .then(response => response[0].subscriptions.map((subscriptionObj, index) => {
+        return this.setState({subscriptionNames: [...this.state.subscriptionNames, subscriptionObj['name']]})
+      }))
   }
 
   onChange = async (e) => {
@@ -36,6 +41,11 @@ class Subscription extends Component {
       interval: document.getElementById('interval').value,
       payment: document.getElementById('payment').value
     })
+    for (let i=0; i<this.state.subscriptionNames.length; i++){
+      if (this.state.name === this.state.subscriptionNames[i]){
+        alert('This subsciption name is already being used. Do you want a second subscription with the same name?')
+      }
+    }
   }
 
   onClickAddAnother = (e) => {
