@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
+import './Form.css'
 
 class EditSubscriptionForm extends React.Component {
   state = {
@@ -64,15 +65,15 @@ class EditSubscriptionForm extends React.Component {
         <div>
         <Form id="subscription_form" onChange={this.onChange} className="w-50 p-3" align='left'>
           <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label className="toBold">Name</Form.Label>
             <Form.Control required type="text" defaultValue={this.state.name}/>
           </Form.Group>
           <Form.Group controlId="due_date">
-            <Form.Label>Due Date</Form.Label>
+            <Form.Label className="toBold">Due Date</Form.Label>
             <Form.Control required type="date" defaultValue={this.state.due_date} />
           </Form.Group>
           <Form.Group controlId="payment">
-            <Form.Label>Cost</Form.Label>
+            <Form.Label className="toBold">Cost</Form.Label>
             <InputGroup className="mb-3">
               <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
               <Form.Control required type="number" pattern="[0-9]" min="1" step="1" defaultValue={this.state.payment} placeholder="Amount (to the nearest dollar)"/>
@@ -80,7 +81,7 @@ class EditSubscriptionForm extends React.Component {
             </InputGroup>
           </Form.Group>
           <Form.Group controlId="interval">
-            <Form.Label>Payment Interval</Form.Label>
+            <Form.Label className="toBold">Payment Interval</Form.Label>
             <Form.Control required as="select" defaultValue={this.state.interval}>
               <option value="monthly">monthly</option>
               <option value="quarterly">quarterly</option>
