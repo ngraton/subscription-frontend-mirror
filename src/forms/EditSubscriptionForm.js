@@ -87,7 +87,7 @@ class EditSubscriptionForm extends React.Component {
               <option value="annual">annual</option>
             </Form.Control>
           </Form.Group>
-          <Button onClick={(e) => this.onClickDone(e)} type="submit" className="ml-2">Done</Button>
+          <Button onClick={(e) => this.onClickDone(e)} type="submit" className="ml-2">Save</Button>
         </Form>
         <Button onClick={(e) => this.onClickDelete(e)} className="ml-2 mt-3" variant="danger">Delete this entire subscription</Button>
         </div>
