@@ -3,6 +3,7 @@ import { Form, Button, Alert, InputGroup, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom'
 import SubscriptionsAPI from '../api/SubscriptionsAPI';
 import UsersAPI from '../api/UsersAPI'
+import './Form.css'
 
 class Subscription extends Component {
   state = {
@@ -81,12 +82,12 @@ class Subscription extends Component {
         {this.state.submitted && <Alert variant="success" onClose={() => this.setState({submitted: false})} dismissible>Your subscription to {this.state.submittedName} was added</Alert>}
          <Form id="subscription_form" onChange={this.onChange} className="w-50 p-3" align='left'>
           <Form.Group controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label className="toBold">Name</Form.Label>
             <Form.Text>What is the name of the company you pay for this subscription?</Form.Text>
             <Form.Control required type="text" placeholder="Company Name"/>
           </Form.Group>
           <Form.Group controlId="interval">
-            <Form.Label>Payment Interval</Form.Label>
+            <Form.Label className="toBold">Payment Interval</Form.Label>
             <Form.Text>Is the payment schedule monthly, quarterly, or annually?</Form.Text>
             <Form.Control required as="select">
               <option></option>
@@ -96,12 +97,12 @@ class Subscription extends Component {
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="due_date">
-            <Form.Label>Due Date</Form.Label>
+            <Form.Label className="toBold">Due Date</Form.Label>
             <Form.Text>When is your next payment due?</Form.Text>
             <Form.Control required type="date" align="center" />
           </Form.Group>
           <Form.Group controlId="payment">
-            <Form.Label>Cost</Form.Label>
+            <Form.Label className="toBold">Cost</Form.Label>
             <Form.Text>How much is your payment?</Form.Text>
             <InputGroup className="mb-3">
               <InputGroup.Prepend><InputGroup.Text>$</InputGroup.Text></InputGroup.Prepend>
