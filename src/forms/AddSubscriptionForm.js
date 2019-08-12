@@ -110,7 +110,7 @@ class Subscription extends Component {
             </InputGroup>
           </Form.Group>
           <Button onClick={this.onClickAddAnother} type="submit">Add Another</Button>
-          <Button onClick={this.onClickDone} type="submit" className="ml-2">Done</Button>
+          <Button onClick={this.onClickDone} type="submit" className="ml-2">Save Subscription</Button>
         </Form>
         </Container>
       </div>
