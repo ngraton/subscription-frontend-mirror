@@ -6,7 +6,7 @@ const addPhoneNumber = async (userId, phoneNumber) => {
       'Content-Type': 'application/json'
     },
     method: "POST",
-    body: JSON.stringify({phone_number: phoneNumber, user: userId})
+    body: JSON.stringify({phone_number: `+1${phoneNumber}`, user: userId})
   });
   const data = await response.json();
   return await data;
