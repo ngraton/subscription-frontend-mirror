@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Form, Container, Alert, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AuthenticationsAPI from '../api/AuthenticationsAPI';
+import ProfilesAPI from '../api/ProfilesAPI';
+import UsersAPI from '../api/UsersAPI';
 class SignupPage extends Component {
  state = {
    username: '',
@@ -9,7 +11,8 @@ class SignupPage extends Component {
    userNumber: '',
    redirectNewSub: false,
    errorMessage: '',
-   phoneNumber: false
+   phoneNumber: false,
+   userId: null
  }
 
  onChange = async (e) => {
@@ -27,15 +30,23 @@ class SignupPage extends Component {
 
  handleSubmit = (e) => {
    e.preventDefault()
-   AuthenticationsAPI.registration(this.state.username, this.state.password, this.state.userNumber.split('-').join(''))
+   AuthenticationsAPI.registration(this.state.username, this.state.password)
      .then(response => {
        if (response.ok) {
          return response.json()
          .then(_jsonResponse => {
            localStorage.setItem('username', this.state.username)
            this.props.setUsername(this.state.username)
-           this.setState({redirectNewSub: true})
-         })
+            if (this.state.userNumber) {
+              UsersAPI.getUserByUsername(this.state.username)
+                .then(jsonResponse => {
+                  ProfilesAPI.addPhoneNumber(jsonResponse[0].id, this.state.userNumber.split('-').join(''))
+                  .then(_res => this.setState({redirectNewSub: true}))
+                })
+            } else {
+              this.setState({redirectNewSub: true})
+            }
+          })
        } else {
          return response.json()
          .then(jsonResponse => this.setState({errorMessage: jsonResponse.username || jsonResponse.password1}))
