@@ -27,20 +27,20 @@ function AppNavBar({ username, setUserName }) {
   return (
     <div>
       <Navbar className="bg-light justify-content-between" expand="lg">
-        <Navbar.Brand><h2 className="ml-5 font-weight-bold">$ubReckoner</h2></Navbar.Brand>
+        <Navbar.Brand><h2 className="ml-4 font-weight-bold">$ubReckoner</h2></Navbar.Brand>
         <Nav.Item>
-          {logedIn && <Nav.Link href='/' className={window.location.pathname === '/' && 'active'}>Report by Month</Nav.Link>}
+          {logedIn && <Nav.Link href='/' className={window.location.pathname === '/' && 'active'}>Total Monthly Subscriptions</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
           {logedIn && <Nav.Link href='/addsubscription' className={window.location.pathname === '/addsubscription' && 'active'}>Add New Subscription</Nav.Link>}
         </Nav.Item>
         <Nav.Item>
-          {logedIn && <Nav.Link href='/subscriptionlist' className={window.location.pathname === '/subscriptionlist' && 'active'}>Subscription List</Nav.Link>}
+          {logedIn && <Nav.Link href='/subscriptionlist' className={window.location.pathname === '/subscriptionlist' && 'active'}>Your Subscriptions</Nav.Link>}
         </Nav.Item>
         {logedIn &&
-        <NavDropdown title="Visual Graph Reports" id="nav-dropdown">
-        <NavDropdown.Item href='/monthlygraph' eventKey="4.1">Monthly Report Graph</NavDropdown.Item>
-        <NavDropdown.Item href='/annualgraph' eventKey="4.2">Annual Report Graph</NavDropdown.Item>
+        <NavDropdown title="Reports" id="nav-dropdown">
+        <NavDropdown.Item href='/monthlygraph' eventKey="4.1">This Month</NavDropdown.Item>
+        <NavDropdown.Item href='/annualgraph' eventKey="4.2">This Year</NavDropdown.Item>
       </NavDropdown>}
         <Nav.Item>
         {logedIn && <>{ username + ':' }</>}{logInOrOut()}
