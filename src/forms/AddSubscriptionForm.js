@@ -82,8 +82,8 @@ class Subscription extends Component {
          <Form id="subscription_form" onChange={this.onChange} className="w-50 p-3" align='left'>
           <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
-            <Form.Control required type="text" placeholder="Who do you pay for this subscription?"/>
-            {/* <Form.Text>^What is the name of the company you pay for this subscription?^</Form.Text> */}
+            <Form.Text>What is the name of the company you pay for this subscription?</Form.Text>
+            <Form.Control required type="text" placeholder="Company Name"/>
           </Form.Group>
           <Form.Group controlId="interval">
             <Form.Label>Payment Interval</Form.Label>
