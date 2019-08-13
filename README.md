@@ -1,6 +1,6 @@
 # SubReckoner
 
-SubReckoner means to assist our users in keeping track of their monthly, quarterly, and annual subscriptions.  We offer graphs and notifications for each.
+SubReckoner is a web-app designed to assist our users in keeping track of their monthly, quarterly, and annual subscriptions.  We offer graphs and notifications for each.
 
 ## Deployment
 
