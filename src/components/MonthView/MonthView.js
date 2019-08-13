@@ -8,6 +8,9 @@ class MonthView extends Component {
     const dateA = new Date(a.due_date)
     const dateB = new Date(b.due_date)
 
+    dateA.setHours(30)
+    dateB.setHours(30)
+
     if (dateA.getDate() < dateB.getDate()){
       return -1
     } else {
