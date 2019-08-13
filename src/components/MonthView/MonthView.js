@@ -4,6 +4,20 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 class MonthView extends Component {
 
+  compare(a, b){
+    const dateA = new Date(a.due_date)
+    const dateB = new Date(b.due_date)
+
+    dateA.setHours(30)
+    dateB.setHours(30)
+
+    if (dateA.getDate() < dateB.getDate()){
+      return -1
+    } else {
+      return 1
+    }
+  }
+
   getMonthlyTotal(){
     let totalCost = 0
     for (let i=0; i < this.props.subscriptions.length; i++){
@@ -14,7 +28,8 @@ class MonthView extends Component {
   }
 
   showSubscriptions(monthCode) {
-    return this.props.subscriptions.map((subscriptionObj, index) => {
+    const subscriptions = [...this.props.subscriptions].sort(this.compare)
+    return subscriptions.map((subscriptionObj, index) => {
       return <SingleSubscription key={index} subscription={subscriptionObj} monthCode={monthCode}/>
     })
   }
