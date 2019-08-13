@@ -8,10 +8,7 @@ class SingleSubscription extends Component {
     let dueDate = new Date(this.props.subscription['due_date'])
     let now = new Date()
     dueDate.setHours(30)
-    console.log(dueDate)
-    console.log(now)
     dueDate.setMonth(monthCode)
-    console.log(dueDate.getDate())
     let realMonthCode = monthCode > 11 ? monthCode - 12 : monthCode
     if(dueDate.getMonth() !== realMonthCode) {
     dueDate.setDate(0)
