@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import MonthView from '../components/MonthView/MonthView';
+// import MonthView from '../components/MonthView/MonthView';
 import UsersAPI from '../api/UsersAPI';
 import monthSorter from '../logic/monthSorter';
 import '../../node_modules/react-vis/dist/style.css';
@@ -39,6 +39,7 @@ class AnnualGraphPage extends Component {
       }
       this.setState({data: [...this.state.data, {x: month, y: totalCost}]})
       this.setState({annualTotal: this.state.annualTotal + totalCost})
+      return null;
     })
   }
 

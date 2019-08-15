@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import AuthenticationsAPI from '../../api/AuthenticationsAPI';
 import './AppNavBar.css';
 
@@ -16,7 +16,7 @@ function AppNavBar({ username, setUserName }) {
 
   React.useEffect(() => {
     setLogedIn(!!localStorage.getItem('username'))
-  }, [localStorage.getItem('username')])
+  }, [])
 
   const logInOrOut = () => {
     if(logedIn){

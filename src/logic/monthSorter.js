@@ -1,17 +1,44 @@
-import DateCalculator from './DateCalculator';
 
+// import DateCalculator from './DateCalculator';
 
-// const allDueDateCalc = (dueDate, interval) => {
-//   const dueDateArray = []
-//   if(interval === 'monthly'){
+const dateInLocalTZ = (dateString) => {
+  const dueDate = new Date(dateString)
+    const diffUTC = dueDate.getHours() - 12
+    diffUTC > 0 ? dueDate.setHours(24) : dueDate.setHours(0)
+    return dueDate
+}
 
-//   }
-//   return dueDateArray
-// }
+const dueDateCalc = (dueDateString, intervalString) => {
+  const dueDate = dateInLocalTZ(dueDateString)
+  const nowDate = new Date()
+  const currentMonth = nowDate.getMonth()
+  const monthStart = nowDate.setDate(1)
+  const dateList = []
+  var increment = 1
+  if(intervalString !== 'monthly') {
+    intervalString === 'annual' ? increment = 12 : increment = 4;
+  }
+  while(monthStart > dueDate){
+    dueDate.setMonth(currentMonth + increment)
+  }
+  dateList.push(dueDate)
+  let nextMonth = dueDate.getMonth()
+  for(let i = 1; i < 12/increment; i++){
+    let monthMod = nextMonth+(increment*i)
+    dateList.push(getDueDate(monthMod, dueDate))
+  }
+  return dateList
+}
 
-// nextDueDateCalc = (dueDate, interval) => {
-//   return 'date string'
-// }
+const getDueDate = (monthCode, date) => {
+  let dueDate =  new Date(date)
+  dueDate.setMonth(monthCode)
+  let realMonthCode = monthCode > 11 ? monthCode - 12 : monthCode
+  if(dueDate.getMonth() !== realMonthCode) {
+  dueDate.setDate(0)
+  } 
+  return dueDate
+}
 
 const sortSubsByMonth = (subscriptions) => {
   const monthlyReportArray = [[],[],[],[],[],[],[],[],[],[],[],[]];
@@ -27,20 +54,12 @@ const sortSubsByMonth = (subscriptions) => {
 }
 
 const monthSorter = (subscription, monthlyReportArray) => {
-  let currentMonth = new Date();
-  currentMonth.setDate(0)
-  let firstDueDate = new Date(subscription.due_date)
-  // while(currentMonth > firstDueDate){
-  //   firstDueDate = nextDueDateCalc(subscription.due_date, subscription.interval)
-  // }
-  // console.log(subscription.due_date , subscription.interval)
-  const dueDateList = DateCalculator.recurringDates(subscription.due_date , subscription.interval)
-  // console.log(dueDateList)
+
+  const dueDateList = dueDateCalc(subscription.due_date , subscription.interval)
+
   for (let i = 0; i < dueDateList.length; i++) {
-    // console.log(dueDateList[i])
-    const dueDate = new Date(dueDateList[i])
+    const dueDate = dateInLocalTZ(dueDateList[i])
     const dueMonth = dueDate.getMonth()
-    subscription.dueInMonth = dueDateList[i]
     monthlyReportArray[dueMonth].push(subscription)
   }
 }
