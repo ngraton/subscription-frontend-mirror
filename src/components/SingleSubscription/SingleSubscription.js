@@ -1,18 +1,28 @@
 import React, { Component } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import './SingleSubscription.css'
 
 class SingleSubscription extends Component {
-  getDueDate() {
-    let dueDate = this.props.subscription['due_date'].split('-')
-    return dueDate[dueDate.length - 1]
+
+  getDueDate(monthCode) {
+    let dueDate = new Date(this.props.subscription['due_date'])
+    const diffUTC = dueDate.getHours() - 12
+    dueDate.setHours(24 + diffUTC)
+    dueDate.setMonth(monthCode)
+    let realMonthCode = monthCode > 11 ? monthCode - 12 : monthCode
+    if(dueDate.getMonth() !== realMonthCode) {
+    dueDate.setDate(0)
+    } 
+    return dueDate.getDate()
   }
 
   render() {
     return (
-      <div>
-        <h2>{this.props.subscription.name}</h2>
-        <h3>Due on {this.getDueDate()}</h3>
-        <h3>$ {this.props.subscription.payment}</h3>
-      </div>
+      <Row>
+        <Col><p className='Subscription-text'>{this.props.subscription.name}</p></Col>
+        <Col><p className='Subscription-text'>Due on {this.getDueDate(this.props.monthCode)}</p></Col>
+        <Col><p className='Subscription-text'>$ {this.props.subscription.payment}</p></Col>
+      </Row>
     )
   }
 }

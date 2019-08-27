@@ -1,30 +1,54 @@
 import React, { Component } from 'react'
 import SingleSubscription from '../SingleSubscription/SingleSubscription'
+import { Container, Row, Col } from 'react-bootstrap'
 
 class MonthView extends Component {
-  showSubscriptions() {
-    return this.props.subscriptions.map((subscriptionObj, index) => {
-      return <SingleSubscription key={index} subscription={subscriptionObj} />
+
+  compare(a, b){
+    const dateA = new Date(a.due_date)
+    const dateB = new Date(b.due_date)
+
+    dateA.setHours(30)
+    dateB.setHours(30)
+
+    if (dateA.getDate() < dateB.getDate()){
+      return -1
+    } else {
+      return 1
+    }
+  }
+
+  getMonthlyTotal(){
+    let totalCost = 0
+    for (let i=0; i < this.props.subscriptions.length; i++){
+      let subscription = this.props.subscriptions[i]
+      totalCost += subscription.payment
+    }
+    return totalCost
+  }
+
+  showSubscriptions(monthCode) {
+    const subscriptions = [...this.props.subscriptions].sort(this.compare)
+    return subscriptions.map((subscriptionObj, index) => {
+      return <SingleSubscription key={index} subscription={subscriptionObj} monthCode={monthCode}/>
     })
   }
 
-// subscriptionObj
-// {
-//   "id": 1,
-//   "name": "big bill",
-//   "due_date": "2019-08-14",
-//   "payment": 100000,
-//   "interval": "annual",
-//   "user": 1
-// }
-
   render() {
     return (
-      <div>
+      <Container>
         <h2>{this.props.month}</h2>
-        {this.props.subscriptions.length > 0 && this.showSubscriptions()}
-        <h3>Total $ </h3>
-      </div>
+        <Container>
+          {this.props.subscriptions.length > 0 && this.showSubscriptions(this.props.monthCode)}
+        </Container>
+        <Row>
+        <Col></Col>
+          <Col>
+            <h3>Total $ {this.getMonthlyTotal()}</h3>
+          </Col>
+        </Row>
+        <hr></hr>
+      </Container>
     )
   }
 }
